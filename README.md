@@ -80,4 +80,6 @@ Dependências, credenciais, bancos de teste, links de confirmação, uploads e c
 
 ## Publicação para demonstração
 
+**Demonstração:** https://campusfacil-tcc.onrender.com/ — **API:** https://campusfacil-tcc-api.onrender.com/api/categories
+
 Consulte [PUBLICACAO_RENDER.md](docs/PUBLICACAO_RENDER.md) e o `render.yaml` para a configuração dos serviços gratuitos. Sem SMTP configurado, a demonstração não confirma novos cadastros. O PostgreSQL Free expira em 30 dias e os uploads da API Free não são persistentes.

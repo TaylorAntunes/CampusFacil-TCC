@@ -2,6 +2,17 @@
 
 Esta configuração conserva o frontend React/Vite, o backend Fastify/Socket.IO e o PostgreSQL. Não copie o `.env`, a caixa de e-mails local ou o banco de desenvolvimento para o GitHub.
 
+## Demonstração publicada em 18/11/2026
+
+- Site: https://campusfacil-tcc.onrender.com/
+- API: https://campusfacil-tcc-api.onrender.com/api/categories
+- PostgreSQL 16 Free, com acesso externo bloqueado; expiração informada no painel: **18/12/2026**.
+- Frontend e API com deploy concluído e estado Live no Render. Configuração realizada manualmente, usando o repositório público; as atualizações do código exigem Manual Deploy no painel.
+- SMTP permanece pendente por escolha do responsável. Novos cadastros não podem concluir a confirmação de e-mail. A exigência de confirmação institucional não foi removida.
+- O banco publicado recebeu somente as seis categorias iniciais. Contas, anúncios, conversas e avaliações do ambiente local não foram migrados.
+
+Verificação externa: página inicial, `/login`, `/register`, `/api/categories` e `/api/advertisements` responderam HTTP 200. O preflight CORS retornou 204 com a origem do frontend e credenciais habilitadas. O navegador exibiu as categorias do banco e permitiu alternar entre os temas claro e escuro. Os fluxos autenticados e a entrega de e-mail não foram validados nesta publicação.
+
 ## Recursos
 
 O `render.yaml` define uma API no plano Free, um site estático e um PostgreSQL Free, todos na região Oregon. Também é possível criar os três recursos manualmente com os mesmos comandos e variáveis.
