@@ -34,7 +34,7 @@ npm.cmd run prisma:seed
 npm.cmd run dev
 ~~~
 
-O seed carrega as categorias iniciais e deve ser executado apenas no banco novo. Não repita o seed em todas as inicializações. A API usa a porta 3333.
+O seed carrega as categorias iniciais e preserva as já existentes, podendo ser repetido sem duplicá-las. A API usa a porta 3333.
 
 Para criar um segredo aleatório, por exemplo:
 
@@ -77,3 +77,7 @@ Relatórios e evidências reais em [docs/testes](docs/testes/RELATORIO_TESTES.md
 Em 18/11/2026, a rodada documentada executou 195 casos, todos aprovados, em ambiente local isolado. Esses resultados não certificam segurança absoluta, acessibilidade ou desempenho na Internet; consulte os limites dos relatórios.
 
 Dependências, credenciais, bancos de teste, links de confirmação, uploads e cópias privadas não fazem parte deste repositório. Os relatórios usam dados fictícios. Os dados de demonstração do banco local não são distribuídos com o código.
+
+## Publicação para demonstração
+
+Consulte [PUBLICACAO_RENDER.md](docs/PUBLICACAO_RENDER.md) e o `render.yaml` para a configuração dos serviços gratuitos. Sem SMTP configurado, a demonstração não confirma novos cadastros. O PostgreSQL Free expira em 30 dias e os uploads da API Free não são persistentes.
