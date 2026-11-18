@@ -118,7 +118,7 @@ app.register(sellersRoutes, { prefix: '/api/sellers' })
 
 app
   .listen({
-    host: '127.0.0.1',
+    host: env.HOST,
     port: env.PORT,
   })
   .then((address) => {
@@ -132,4 +132,8 @@ app
         console.log('user disconnected', socket.id)
       })
     })
+  })
+  .catch((error) => {
+    console.error('Não foi possível iniciar o servidor.', error)
+    process.exit(1)
   })
