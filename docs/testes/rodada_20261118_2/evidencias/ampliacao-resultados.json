@@ -1,0 +1,122 @@
+[
+  {
+    "id": "CT175",
+    "area": "Segurança e regras — ampliação",
+    "requirement": "Autorização por recurso, validação e integridade",
+    "title": "Leitura de solicitações de terceiros por anúncio",
+    "preconditions": "Somente contas fictícias e banco isolado da rodada.",
+    "procedure": "Sessão C consulta GET /advertisements/:id/service-requests do anúncio de A com contratação de B",
+    "expected": "Terceiro recebe 403 ou lista sem dados de outras pessoas",
+    "obtained": "HTTP 200 retornou 1 solicitação(ões) de outra pessoa, incluindo mensagem e requesterId\n\n1 !== 0\n",
+    "status": "reprovado",
+    "evidence": "evidencias/ampliacao-resultados.json; evidencias/ampliacao-http.json"
+  },
+  {
+    "id": "CT176",
+    "area": "Segurança e regras — ampliação",
+    "requirement": "Autorização por recurso, validação e integridade",
+    "title": "Criação de aviso de sistema para terceiro",
+    "preconditions": "Somente contas fictícias e banco isolado da rodada.",
+    "procedure": "C chama POST /notifications para A com type service_request_accepted, sem aceitar solicitação",
+    "expected": "Um usuário comum não cria aviso de aceite em nome do sistema para outro participante",
+    "obtained": "Usuário C conseguiu criar aviso de sistema para A: HTTP 201",
+    "status": "reprovado",
+    "evidence": "evidencias/ampliacao-resultados.json; evidencias/ampliacao-http.json"
+  },
+  {
+    "id": "CT177",
+    "area": "Segurança e regras — ampliação",
+    "requirement": "Autorização por recurso, validação e integridade",
+    "title": "Alterar disponibilidade de anúncio alheio",
+    "preconditions": "Somente contas fictícias e banco isolado da rodada.",
+    "procedure": "PATCH toggle-availability de anúncio de A pela sessão C",
+    "expected": "HTTP 403 e disponibilidade preservada",
+    "obtained": "HTTP 403; estado preservado",
+    "status": "aprovado",
+    "evidence": "evidencias/ampliacao-resultados.json; evidencias/ampliacao-http.json"
+  },
+  {
+    "id": "CT178",
+    "area": "Segurança e regras — ampliação",
+    "requirement": "Autorização por recurso, validação e integridade",
+    "title": "Leitura de mensagens não modifica conversa alheia",
+    "preconditions": "Somente contas fictícias e banco isolado da rodada.",
+    "procedure": "A envia mensagem para B; C chama PATCH /messages/A/read; comparar registro no banco",
+    "expected": "C não marca a mensagem A→B como lida",
+    "obtained": "Mensagem de B permaneceu não lida",
+    "status": "aprovado",
+    "evidence": "evidencias/ampliacao-resultados.json; evidencias/ampliacao-http.json"
+  },
+  {
+    "id": "CT179",
+    "area": "Segurança e regras — ampliação",
+    "requirement": "Autorização por recurso, validação e integridade",
+    "title": "Segredos de confirmação ausentes na lista pública",
+    "preconditions": "Somente contas fictícias e banco isolado da rodada.",
+    "procedure": "GET /sellers sem autenticação; conferir nomes dos campos, descartando valores",
+    "expected": "Campos verification_token_hash, verification_expires_at e password_hash ausentes",
+    "obtained": "Campos sensíveis ausentes",
+    "status": "aprovado",
+    "evidence": "evidencias/ampliacao-resultados.json; evidencias/ampliacao-http.json"
+  },
+  {
+    "id": "CT180",
+    "area": "Segurança e regras — ampliação",
+    "requirement": "Autorização por recurso, validação e integridade",
+    "title": "SVG disfarçado de PNG",
+    "preconditions": "Somente contas fictícias e banco isolado da rodada.",
+    "procedure": "Enviar corpo SVG como image/png e nome false.png",
+    "expected": "HTTP 400; conteúdo ativo não é aceito pelo MIME informado",
+    "obtained": "HTTP 400; assinatura incompatível rejeitada",
+    "status": "aprovado",
+    "evidence": "evidencias/ampliacao-resultados.json; evidencias/ampliacao-http.json"
+  },
+  {
+    "id": "CT181",
+    "area": "Segurança e regras — ampliação",
+    "requirement": "Autorização por recurso, validação e integridade",
+    "title": "Nome vazio na atualização do perfil",
+    "preconditions": "Somente contas fictícias e banco isolado da rodada.",
+    "procedure": "C envia PUT /me com name vazio; restaurar nome original no final",
+    "expected": "Campo obrigatório não aceita nome vazio",
+    "obtained": "Nome vazio aceito pelo perfil: HTTP 200",
+    "status": "reprovado",
+    "evidence": "evidencias/ampliacao-resultados.json; evidencias/ampliacao-http.json"
+  },
+  {
+    "id": "CT182",
+    "area": "Segurança e regras — ampliação",
+    "requirement": "Autorização por recurso, validação e integridade",
+    "title": "Preço negativo rejeitado também no banco",
+    "preconditions": "Somente contas fictícias e banco isolado da rodada.",
+    "procedure": "Transação local tenta inserir anúncio com preço -1 e faz ROLLBACK",
+    "expected": "SQLSTATE 23514 na inserção direta",
+    "obtained": "CHECK retornou SQLSTATE 23514",
+    "status": "aprovado",
+    "evidence": "evidencias/ampliacao-resultados.json; evidencias/ampliacao-http.json"
+  },
+  {
+    "id": "CT183",
+    "area": "Segurança e regras — ampliação",
+    "requirement": "Autorização por recurso, validação e integridade",
+    "title": "Cancelar solicitação já aceita",
+    "preconditions": "Somente contas fictícias e banco isolado da rodada.",
+    "procedure": "Criar anúncio descartável de A; C solicita; A aceita; C cancela",
+    "expected": "Prestador aceita, solicitante cancela, status final CANCELLED",
+    "obtained": "CANCELLED persistido",
+    "status": "aprovado",
+    "evidence": "evidencias/ampliacao-resultados.json; evidencias/ampliacao-http.json"
+  },
+  {
+    "id": "CT184",
+    "area": "Segurança e regras — ampliação",
+    "requirement": "Autorização por recurso, validação e integridade",
+    "title": "Estado terminal não pode ser reaberto",
+    "preconditions": "Somente contas fictícias e banco isolado da rodada.",
+    "procedure": "Solicitante tenta reiniciar a solicitação cancelada no caso anterior",
+    "expected": "CANCELLED→IN_PROGRESS retorna 400 e estado permanece",
+    "obtained": "HTTP 400; CANCELLED mantido",
+    "status": "aprovado",
+    "evidence": "evidencias/ampliacao-resultados.json; evidencias/ampliacao-http.json"
+  }
+]

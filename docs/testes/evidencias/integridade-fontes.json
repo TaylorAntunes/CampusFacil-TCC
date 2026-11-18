@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-11-18T06:02:59.191Z",
+  "filesCompared": 272,
+  "changed": [],
+  "productionSourceUnchanged": true,
+  "excluded": [
+    "node_modules",
+    "dist",
+    "build",
+    "uploads",
+    ".git",
+    ".env*"
+  ]
+}

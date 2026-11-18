@@ -1,0 +1,40 @@
+[
+  {
+    "id": "CT164",
+    "area": "Segurança e Socket.IO",
+    "title": "Reconexão automática após queda de transporte",
+    "requirement": "Isolamento e autorização; recuperação após interrupção",
+    "preconditions": "Instâncias e contas fictícias exclusivas; mensagens sem dados pessoais.",
+    "expected": "Cliente se reconecta automaticamente e recebe nova mensagem",
+    "procedure": "Conectar com reconnection=true; fechar Engine.IO para simular queda do transporte; aguardar connect sem chamar connect manualmente; enviar mensagem",
+    "status": "aprovado",
+    "obtained": "Reconexão automática e entrega confirmadas; queda simulada no cliente, não desligamento de rede física",
+    "durationMs": 426.98990000000003,
+    "evidence": "evidencias/socket-seguranca-eventos.json; evidencias/socket-seguranca.json"
+  },
+  {
+    "id": "CT165",
+    "area": "Segurança e Socket.IO",
+    "title": "Sessão C não pode entrar na sala de B",
+    "requirement": "Isolamento e autorização; recuperação após interrupção",
+    "preconditions": "Instâncias e contas fictícias exclusivas; mensagens sem dados pessoais.",
+    "expected": "JWT de C não autoriza sala B",
+    "procedure": "Conectar auth.userId=B e token=C; enviar A→B e observar vazamento",
+    "status": "aprovado",
+    "obtained": "JWT C não ingressa na sala B",
+    "durationMs": 8.858300000000327,
+    "evidence": "evidencias/socket-seguranca-eventos.json; evidencias/socket-seguranca.json"
+  },
+  {
+    "id": "CT166",
+    "area": "Segurança e Socket.IO",
+    "title": "Listagem pública não expõe hashes",
+    "requirement": "Isolamento e autorização; recuperação após interrupção",
+    "preconditions": "Instâncias e contas fictícias exclusivas; mensagens sem dados pessoais.",
+    "expected": "GET /sellers sem token deve omitir password_hash",
+    "procedure": "Consultar lista pública; registrar apenas nomes dos campos e quantidade, sem valores de hashes",
+    "status": "aprovado",
+    "durationMs": 12.173200000000179,
+    "evidence": "evidencias/socket-seguranca-eventos.json; evidencias/socket-seguranca.json"
+  }
+]

@@ -1,0 +1,35 @@
+[
+  {
+    "type": "reconnect",
+    "oldSocket": "FqhqlJ9afdIsU9D3AABH",
+    "newSocket": "GbhS46EJsY-tCApuAABJ",
+    "automatic": true,
+    "messageId": "168633e5-ab7b-471f-afd7-700e3bc60b62"
+  },
+  {
+    "type": "identity-mismatch",
+    "rejected": true,
+    "claimedUserId": "3f1a7d31-89c8-415a-bca1-b05137d5efdb",
+    "actualTokenSubject": "6108799b-95ec-425d-9cff-5ee72c6a42a0"
+  },
+  {
+    "type": "public-sellers",
+    "httpStatus": 200,
+    "count": 4,
+    "fields": [
+      "id",
+      "name",
+      "email",
+      "email_verified_at",
+      "course",
+      "semester",
+      "bio",
+      "avatar_url",
+      "location",
+      "response_time",
+      "skills",
+      "role",
+      "created_at"
+    ]
+  }
+]

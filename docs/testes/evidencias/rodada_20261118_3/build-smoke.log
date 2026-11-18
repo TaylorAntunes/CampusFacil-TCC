@@ -1,0 +1,4 @@
+{
+  status: 'aprovado',
+  obtained: 'Build iniciou, autenticou, gravou PNG no diretório isolado correto e serviu imagem HTTP 200 sem hash; nosniff presente.'
+}

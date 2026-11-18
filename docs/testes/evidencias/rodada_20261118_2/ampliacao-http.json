@@ -1,0 +1,232 @@
+[
+  {
+    "time": "2026-11-18T16:21:18.423Z",
+    "method": "GET",
+    "route": "/advertisements/b98445ec-96b2-4598-876b-783f94f20c85/service-requests",
+    "status": 200,
+    "data": {
+      "serviceRequests": [
+        {
+          "id": "d13d16eb-9465-4465-8389-96747c37018a",
+          "status": "COMPLETED",
+          "created_at": "2026-11-18T16:19:19.437Z",
+          "updated_at": "2026-11-18T16:19:19.561Z",
+          "advertisementId": "b98445ec-96b2-4598-876b-783f94f20c85",
+          "requesterId": "3f1a7d31-89c8-415a-bca1-b05137d5efdb",
+          "message": "Solicitação fictícia para auditoria 945ac799-26fd-4257-908b-b86159f6f105"
+        }
+      ]
+    }
+  },
+  {
+    "time": "2026-11-18T16:21:18.444Z",
+    "method": "POST",
+    "route": "/notifications",
+    "status": 201,
+    "data": ""
+  },
+  {
+    "time": "2026-11-18T16:21:18.503Z",
+    "method": "PATCH",
+    "route": "/advertisements/b98445ec-96b2-4598-876b-783f94f20c85/toggle-availability",
+    "status": 403,
+    "data": {
+      "message": "Unauthorized"
+    }
+  },
+  {
+    "time": "2026-11-18T16:21:18.522Z",
+    "method": "POST",
+    "route": "/messages",
+    "status": 201,
+    "data": {
+      "message": {
+        "id": "ab6f8485-1ac2-4c21-9e36-1e7065ffedf4",
+        "content": "[Auditoria] Prova de isolamento de marcação de leitura.",
+        "read": false,
+        "createdAt": "2026-11-18T16:21:18.512Z",
+        "senderId": "d0853462-0ae5-4d83-9c1f-6f8d92e0cfb9",
+        "receiverId": "3f1a7d31-89c8-415a-bca1-b05137d5efdb",
+        "sender": {
+          "id": "d0853462-0ae5-4d83-9c1f-6f8d92e0cfb9",
+          "name": "Prestador fictício atualizado",
+          "email": "audit.mwmbtjtm.prestador@ifce.edu.br",
+          "avatar_url": "/uploads/c2ae39f2-ef0e-4ca0-a9ab-5a20bfc61070.png"
+        },
+        "receiver": {
+          "id": "3f1a7d31-89c8-415a-bca1-b05137d5efdb",
+          "name": "Auditoria solicitante",
+          "email": "audit.mwmbtjtm.solicitante@ifce.edu.br",
+          "avatar_url": null
+        }
+      }
+    }
+  },
+  {
+    "time": "2026-11-18T16:21:18.534Z",
+    "method": "PATCH",
+    "route": "/messages/d0853462-0ae5-4d83-9c1f-6f8d92e0cfb9/read",
+    "status": 204,
+    "data": ""
+  },
+  {
+    "method": "GET",
+    "route": "/sellers/",
+    "status": 200,
+    "fields": [
+      "id",
+      "name",
+      "email",
+      "email_verified_at",
+      "course",
+      "semester",
+      "bio",
+      "avatar_url",
+      "location",
+      "response_time",
+      "skills",
+      "role",
+      "created_at"
+    ]
+  },
+  {
+    "time": "2026-11-18T16:21:18.556Z",
+    "method": "POST",
+    "route": "/users/avatar",
+    "status": 400,
+    "data": {
+      "message": "Envie uma imagem PNG, JPEG ou WebP válida. SVG e conteúdo ativo não são permitidos."
+    }
+  },
+  {
+    "time": "2026-11-18T16:21:18.566Z",
+    "method": "PUT",
+    "route": "/me",
+    "status": 200,
+    "data": {
+      "id": "6108799b-95ec-425d-9cff-5ee72c6a42a0",
+      "name": "",
+      "email": "audit.mwmbtjtm.terceiro@ifce.edu.br",
+      "email_verified_at": "2026-11-18T16:19:17.535Z",
+      "course": null,
+      "semester": null,
+      "bio": null,
+      "avatar_url": null,
+      "location": null,
+      "response_time": null,
+      "skills": [],
+      "role": "MEMBER",
+      "created_at": "2026-11-18T16:19:17.519Z"
+    }
+  },
+  {
+    "time": "2026-11-18T16:21:18.579Z",
+    "method": "PUT",
+    "route": "/me",
+    "status": 200,
+    "data": {
+      "id": "6108799b-95ec-425d-9cff-5ee72c6a42a0",
+      "name": "Auditoria terceiro",
+      "email": "audit.mwmbtjtm.terceiro@ifce.edu.br",
+      "email_verified_at": "2026-11-18T16:19:17.535Z",
+      "course": null,
+      "semester": null,
+      "bio": null,
+      "avatar_url": null,
+      "location": null,
+      "response_time": null,
+      "skills": [],
+      "role": "MEMBER",
+      "created_at": "2026-11-18T16:19:17.519Z"
+    }
+  },
+  {
+    "time": "2026-11-18T16:21:18.602Z",
+    "method": "POST",
+    "route": "/advertisements",
+    "status": 201,
+    "data": ""
+  },
+  {
+    "time": "2026-11-18T16:21:18.623Z",
+    "method": "POST",
+    "route": "/service-requests",
+    "status": 201,
+    "data": ""
+  },
+  {
+    "time": "2026-11-18T16:21:18.652Z",
+    "method": "PATCH",
+    "route": "/service-requests/8e09ec66-f215-46f6-9079-f5018779ae65/status",
+    "status": 200,
+    "data": {
+      "serviceRequest": {
+        "id": "8e09ec66-f215-46f6-9079-f5018779ae65",
+        "status": "ACCEPTED",
+        "created_at": "2026-11-18T16:21:18.616Z",
+        "updated_at": "2026-11-18T16:21:18.636Z",
+        "advertisementId": "5aba4434-3325-4b27-aa90-e3d7729fbc2a",
+        "requesterId": "6108799b-95ec-425d-9cff-5ee72c6a42a0",
+        "message": "[Auditoria] Cancelar após aceite",
+        "advertisement": {
+          "id": "5aba4434-3325-4b27-aa90-e3d7729fbc2a",
+          "title": "Cancelamento aceito 06758e7b-6fc5-45d2-a774-207afd5270c7",
+          "description": "Serviço fictício usado apenas para testar cancelamento após aceite.",
+          "price": "10",
+          "image": null,
+          "availability": "ACTIVE",
+          "created_at": "2026-11-18T16:21:18.597Z",
+          "authorId": "d0853462-0ae5-4d83-9c1f-6f8d92e0cfb9",
+          "categoryId": "ea728f0e-cac8-4b10-a2e3-4dac63942a53",
+          "author": {
+            "id": "d0853462-0ae5-4d83-9c1f-6f8d92e0cfb9",
+            "name": "Prestador fictício atualizado",
+            "avatar_url": "/uploads/c2ae39f2-ef0e-4ca0-a9ab-5a20bfc61070.png"
+          }
+        }
+      }
+    }
+  },
+  {
+    "time": "2026-11-18T16:21:18.672Z",
+    "method": "PATCH",
+    "route": "/service-requests/8e09ec66-f215-46f6-9079-f5018779ae65/status",
+    "status": 200,
+    "data": {
+      "serviceRequest": {
+        "id": "8e09ec66-f215-46f6-9079-f5018779ae65",
+        "status": "CANCELLED",
+        "created_at": "2026-11-18T16:21:18.616Z",
+        "updated_at": "2026-11-18T16:21:18.665Z",
+        "advertisementId": "5aba4434-3325-4b27-aa90-e3d7729fbc2a",
+        "requesterId": "6108799b-95ec-425d-9cff-5ee72c6a42a0",
+        "message": "[Auditoria] Cancelar após aceite",
+        "advertisement": {
+          "id": "5aba4434-3325-4b27-aa90-e3d7729fbc2a",
+          "title": "Cancelamento aceito 06758e7b-6fc5-45d2-a774-207afd5270c7",
+          "description": "Serviço fictício usado apenas para testar cancelamento após aceite.",
+          "price": "10",
+          "image": null,
+          "availability": "ACTIVE",
+          "created_at": "2026-11-18T16:21:18.597Z",
+          "authorId": "d0853462-0ae5-4d83-9c1f-6f8d92e0cfb9",
+          "categoryId": "ea728f0e-cac8-4b10-a2e3-4dac63942a53",
+          "author": {
+            "id": "d0853462-0ae5-4d83-9c1f-6f8d92e0cfb9",
+            "name": "Prestador fictício atualizado",
+            "avatar_url": "/uploads/c2ae39f2-ef0e-4ca0-a9ab-5a20bfc61070.png"
+          }
+        }
+      }
+    }
+  },
+  {
+    "time": "2026-11-18T16:21:18.688Z",
+    "method": "PATCH",
+    "route": "/service-requests/8e09ec66-f215-46f6-9079-f5018779ae65/status",
+    "status": 400,
+    "data": {
+      "message": "Transicao de status invalida para este pedido."
+    }
+  }
+]

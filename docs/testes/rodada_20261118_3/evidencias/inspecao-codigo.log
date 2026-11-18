@@ -1,0 +1,2 @@
+runtime/backend/src\server.ts:103:    response.setHeader('Content-Security-Policy', "default-src 'none'; style-src 'unsafe-inline'; sandbox")
+runtime/frontend/src\components\ui\chart.tsx:79:      dangerouslySetInnerHTML={{

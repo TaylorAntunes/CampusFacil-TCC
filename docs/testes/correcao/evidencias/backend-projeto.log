@@ -1,0 +1,8 @@
+
+> tcc-taylor@1.0.0 dev
+> ts-node-dev -r tsconfig-paths/register --respawn --transpile-only src/server.ts
+
+[INFO] 03:19:05 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.2, typescript ver. 5.9.2)
+HTTP Server Running on http://127.0.0.1:3333
+[INFO] 03:19:52 Restarting: C:\Users\taylor\Desktop\CampusFacil\backend\src\server.ts has been modified
+HTTP Server Running on http://127.0.0.1:3333

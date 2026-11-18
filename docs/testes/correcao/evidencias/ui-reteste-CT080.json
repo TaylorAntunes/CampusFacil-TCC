@@ -1,0 +1,13 @@
+{
+  "id": "CT080",
+  "area": "Interface/autenticação",
+  "requirement": "Logout e invalidação da própria sessão",
+  "title": "Logout no navegador",
+  "expected": "Após conclusão do logout: armazenamento limpo, painel protegido e JWT da sessão rejeitado",
+  "procedure": "Login real, clicar Sair, aguardar conclusão assíncrona, tentar /dashboard e reutilizar somente o JWT dessa sessão por HTTP.",
+  "preconditions": "Conta fictícia confirmada; instâncias corrigidas isoladas.",
+  "status": "aprovado",
+  "obtained": "Armazenamento limpo; /dashboard redirecionou a /login; JWT encerrado recebeu HTTP 401.",
+  "evidence": "evidencias/capturas/CT080-logout-reteste.png; evidencias/ui-reteste-CT080.json",
+  "note": "O primeiro seletor verificava localStorage antes da conclusão do POST de logout. Reteste aguardou a conclusão real; token omitido."
+}

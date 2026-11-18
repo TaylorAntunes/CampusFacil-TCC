@@ -1,0 +1,42 @@
+[
+  {
+    "type": "reconnect",
+    "oldSocket": "xkvWfY4KRsktoVFaAAC_",
+    "newSocket": "1igrURX3WI5T6v8dAADB",
+    "automatic": true,
+    "messageId": "86e99a5f-841a-4c35-86ec-cb9f524f34f9"
+  },
+  {
+    "type": "identity-mismatch",
+    "claimedUserId": "49abc725-db85-430a-a955-0081d25545b9",
+    "actualTokenSubject": "ebe76240-2d69-4453-a798-db6fe0db4ebc",
+    "connected": true,
+    "received": {
+      "id": "b99b2792-e0fc-4ee1-9aa3-fb2e98659f5e",
+      "content": "[Auditoria] Prova de sala com identidade divergente",
+      "senderId": "c1e0b6e1-2492-4834-8878-53e04675dc5a",
+      "receiverId": "49abc725-db85-430a-a955-0081d25545b9"
+    },
+    "sentMessageId": "b99b2792-e0fc-4ee1-9aa3-fb2e98659f5e"
+  },
+  {
+    "type": "public-sellers",
+    "httpStatus": 200,
+    "count": 12,
+    "fields": [
+      "id",
+      "name",
+      "email",
+      "password_hash",
+      "course",
+      "semester",
+      "bio",
+      "avatar_url",
+      "location",
+      "response_time",
+      "skills",
+      "role",
+      "created_at"
+    ]
+  }
+]

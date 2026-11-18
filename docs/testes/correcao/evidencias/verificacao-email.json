@@ -1,0 +1,86 @@
+[
+  {
+    "id": "CT167",
+    "area": "Confirmação institucional e sessões",
+    "title": "Cadastro real no navegador exige confirmação",
+    "expected": "Sem sessão automática; página de confirmação; e-mail na caixa local",
+    "procedure": "Preencher formulário institucional válido e enviar; observar navegação e localStorage",
+    "status": "aprovado",
+    "preconditions": "Instâncias e banco de correção isolados; caixa de saída local autorizada.",
+    "obtained": "Conta não recebe token de sessão antes de confirmar; link só na caixa de saída local.",
+    "durationMs": 3792.7834000000003,
+    "evidence": "evidencias/verificacao-email.json; evidencias/capturas/"
+  },
+  {
+    "id": "CT168",
+    "area": "Confirmação institucional e sessões",
+    "title": "Confirmação de titularidade via link local",
+    "expected": "Botão confirma o link e libera login",
+    "procedure": "Abrir verificationUrl da caixa local; clicar confirmar; autenticar pela API",
+    "status": "aprovado",
+    "preconditions": "Instâncias e banco de correção isolados; caixa de saída local autorizada.",
+    "obtained": "Confirmação e login autorizados após consumo do link.",
+    "durationMs": 1028.9060999999992,
+    "evidence": "evidencias/verificacao-email.json; evidencias/capturas/"
+  },
+  {
+    "id": "CT169",
+    "area": "Confirmação institucional e sessões",
+    "title": "Link de uso único",
+    "expected": "Reutilização retorna 400",
+    "procedure": "Repetir o mesmo token já confirmado",
+    "status": "aprovado",
+    "preconditions": "Instâncias e banco de correção isolados; caixa de saída local autorizada.",
+    "obtained": "HTTP 400",
+    "durationMs": 11.867799999999988,
+    "evidence": "evidencias/verificacao-email.json; evidencias/capturas/"
+  },
+  {
+    "id": "CT170",
+    "area": "Confirmação institucional e sessões",
+    "title": "Link inválido",
+    "expected": "Token aleatório retorna 400",
+    "procedure": "Enviar 64 caracteres aleatórios não cadastrados",
+    "status": "aprovado",
+    "preconditions": "Instâncias e banco de correção isolados; caixa de saída local autorizada.",
+    "obtained": "HTTP 400",
+    "durationMs": 12.463300000000345,
+    "evidence": "evidencias/verificacao-email.json; evidencias/capturas/"
+  },
+  {
+    "id": "CT171",
+    "area": "Confirmação institucional e sessões",
+    "title": "Link expirado",
+    "expected": "Token expirado retorna 400 e conta segue pendente",
+    "procedure": "Cadastrar conta fictícia; SQL de preparação simula validade passada; chamar confirmação real",
+    "status": "aprovado",
+    "preconditions": "Instâncias e banco de correção isolados; caixa de saída local autorizada.",
+    "obtained": "HTTP 400; tempo expirado preparado por SQL, sem mock do endpoint.",
+    "durationMs": 491.15740000000005,
+    "evidence": "evidencias/verificacao-email.json; evidencias/capturas/"
+  },
+  {
+    "id": "CT172",
+    "area": "Confirmação institucional e sessões",
+    "title": "Reenvio após expiração",
+    "expected": "Novo link confirma; anterior não funciona; API não expõe token",
+    "procedure": "Solicitar reenvio, ler caixa local e confirmar novo link",
+    "status": "aprovado",
+    "preconditions": "Instâncias e banco de correção isolados; caixa de saída local autorizada.",
+    "obtained": "Reenvio e uso único confirmados; links omitidos dos registros públicos.",
+    "durationMs": 67.6855999999998,
+    "evidence": "evidencias/verificacao-email.json; evidencias/capturas/"
+  },
+  {
+    "id": "CT173",
+    "area": "Confirmação institucional e sessões",
+    "title": "Revogação de sessão e desconexão do socket",
+    "expected": "Logout revoga o JWT e encerra conexão Socket.IO; nova sessão funciona",
+    "procedure": "Autenticar, conectar socket, POST logout, aguardar disconnect, GET /me com JWT anterior",
+    "status": "aprovado",
+    "preconditions": "Instâncias e banco de correção isolados; caixa de saída local autorizada.",
+    "obtained": "JWT revogado retorna 401; socket encerrado; novo login retorna 200.",
+    "durationMs": 870.5608999999995,
+    "evidence": "evidencias/verificacao-email.json; evidencias/capturas/"
+  }
+]

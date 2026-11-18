@@ -1,0 +1,11 @@
+{
+  "version": "PostgreSQL 16.16 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit",
+  "database": "campusfacil_audit_20261118163324",
+  "counts": {
+    "users": 4,
+    "advertisements": 4,
+    "requests": 5,
+    "reviews": 1,
+    "messages": 107
+  }
+}

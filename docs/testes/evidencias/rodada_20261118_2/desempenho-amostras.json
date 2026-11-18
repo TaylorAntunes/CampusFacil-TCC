@@ -1,0 +1,616 @@
+{
+  "metrics": {
+    "sent": 100,
+    "received": 100,
+    "failures": 0,
+    "minMs": 7.783699999999953,
+    "maxMs": 14.677400000000489,
+    "meanMs": 10.341236000000071,
+    "medianMs": 10.089550000000145,
+    "p95Ms": 12.560300000000097,
+    "method": "HTTP POST iniciado → evento new_message recebido; mesmo processo/relógio monotônico; serial; loopback; inclui HTTP, persistência PostgreSQL e Socket.IO; sem aquecimento excluído",
+    "timestamp": "2026-11-18T16:19:22.007Z"
+  },
+  "samples": [
+    {
+      "index": 0,
+      "received": true,
+      "latencyMs": 11.371799999999894,
+      "httpStatus": 201
+    },
+    {
+      "index": 1,
+      "received": true,
+      "latencyMs": 11.116400000000795,
+      "httpStatus": 201
+    },
+    {
+      "index": 2,
+      "received": true,
+      "latencyMs": 9.969999999999345,
+      "httpStatus": 201
+    },
+    {
+      "index": 3,
+      "received": true,
+      "latencyMs": 14.677400000000489,
+      "httpStatus": 201
+    },
+    {
+      "index": 4,
+      "received": true,
+      "latencyMs": 10.819600000000719,
+      "httpStatus": 201
+    },
+    {
+      "index": 5,
+      "received": true,
+      "latencyMs": 10.475900000000365,
+      "httpStatus": 201
+    },
+    {
+      "index": 6,
+      "received": true,
+      "latencyMs": 9.292099999999664,
+      "httpStatus": 201
+    },
+    {
+      "index": 7,
+      "received": true,
+      "latencyMs": 10.537499999999454,
+      "httpStatus": 201
+    },
+    {
+      "index": 8,
+      "received": true,
+      "latencyMs": 8.952900000000227,
+      "httpStatus": 201
+    },
+    {
+      "index": 9,
+      "received": true,
+      "latencyMs": 10.385400000000118,
+      "httpStatus": 201
+    },
+    {
+      "index": 10,
+      "received": true,
+      "latencyMs": 9.898799999999937,
+      "httpStatus": 201
+    },
+    {
+      "index": 11,
+      "received": true,
+      "latencyMs": 10.189699999999903,
+      "httpStatus": 201
+    },
+    {
+      "index": 12,
+      "received": true,
+      "latencyMs": 11.0007999999998,
+      "httpStatus": 201
+    },
+    {
+      "index": 13,
+      "received": true,
+      "latencyMs": 12.112099999999373,
+      "httpStatus": 201
+    },
+    {
+      "index": 14,
+      "received": true,
+      "latencyMs": 11.917199999999866,
+      "httpStatus": 201
+    },
+    {
+      "index": 15,
+      "received": true,
+      "latencyMs": 9.498599999999897,
+      "httpStatus": 201
+    },
+    {
+      "index": 16,
+      "received": true,
+      "latencyMs": 11.535500000000866,
+      "httpStatus": 201
+    },
+    {
+      "index": 17,
+      "received": true,
+      "latencyMs": 11.780700000000252,
+      "httpStatus": 201
+    },
+    {
+      "index": 18,
+      "received": true,
+      "latencyMs": 10.100099999999657,
+      "httpStatus": 201
+    },
+    {
+      "index": 19,
+      "received": true,
+      "latencyMs": 8.422100000000682,
+      "httpStatus": 201
+    },
+    {
+      "index": 20,
+      "received": true,
+      "latencyMs": 10.079000000000633,
+      "httpStatus": 201
+    },
+    {
+      "index": 21,
+      "received": true,
+      "latencyMs": 9.47820000000047,
+      "httpStatus": 201
+    },
+    {
+      "index": 22,
+      "received": true,
+      "latencyMs": 12.11700000000019,
+      "httpStatus": 201
+    },
+    {
+      "index": 23,
+      "received": true,
+      "latencyMs": 9.230100000000675,
+      "httpStatus": 201
+    },
+    {
+      "index": 24,
+      "received": true,
+      "latencyMs": 9.176499999999578,
+      "httpStatus": 201
+    },
+    {
+      "index": 25,
+      "received": true,
+      "latencyMs": 9.709600000000137,
+      "httpStatus": 201
+    },
+    {
+      "index": 26,
+      "received": true,
+      "latencyMs": 9.413399999999456,
+      "httpStatus": 201
+    },
+    {
+      "index": 27,
+      "received": true,
+      "latencyMs": 10.33140000000003,
+      "httpStatus": 201
+    },
+    {
+      "index": 28,
+      "received": true,
+      "latencyMs": 9.690700000000106,
+      "httpStatus": 201
+    },
+    {
+      "index": 29,
+      "received": true,
+      "latencyMs": 10.473899999999958,
+      "httpStatus": 201
+    },
+    {
+      "index": 30,
+      "received": true,
+      "latencyMs": 10.637899999999718,
+      "httpStatus": 201
+    },
+    {
+      "index": 31,
+      "received": true,
+      "latencyMs": 9.89429999999993,
+      "httpStatus": 201
+    },
+    {
+      "index": 32,
+      "received": true,
+      "latencyMs": 9.889200000000528,
+      "httpStatus": 201
+    },
+    {
+      "index": 33,
+      "received": true,
+      "latencyMs": 10.79030000000057,
+      "httpStatus": 201
+    },
+    {
+      "index": 34,
+      "received": true,
+      "latencyMs": 9.594000000000051,
+      "httpStatus": 201
+    },
+    {
+      "index": 35,
+      "received": true,
+      "latencyMs": 9.464799999999741,
+      "httpStatus": 201
+    },
+    {
+      "index": 36,
+      "received": true,
+      "latencyMs": 11.9375,
+      "httpStatus": 201
+    },
+    {
+      "index": 37,
+      "received": true,
+      "latencyMs": 11.623099999999795,
+      "httpStatus": 201
+    },
+    {
+      "index": 38,
+      "received": true,
+      "latencyMs": 11.674300000000585,
+      "httpStatus": 201
+    },
+    {
+      "index": 39,
+      "received": true,
+      "latencyMs": 11.575000000000728,
+      "httpStatus": 201
+    },
+    {
+      "index": 40,
+      "received": true,
+      "latencyMs": 11.65520000000015,
+      "httpStatus": 201
+    },
+    {
+      "index": 41,
+      "received": true,
+      "latencyMs": 9.866500000000087,
+      "httpStatus": 201
+    },
+    {
+      "index": 42,
+      "received": true,
+      "latencyMs": 9.58219999999983,
+      "httpStatus": 201
+    },
+    {
+      "index": 43,
+      "received": true,
+      "latencyMs": 12.070299999999406,
+      "httpStatus": 201
+    },
+    {
+      "index": 44,
+      "received": true,
+      "latencyMs": 9.131800000000112,
+      "httpStatus": 201
+    },
+    {
+      "index": 45,
+      "received": true,
+      "latencyMs": 8.559400000000096,
+      "httpStatus": 201
+    },
+    {
+      "index": 46,
+      "received": true,
+      "latencyMs": 9.406100000000151,
+      "httpStatus": 201
+    },
+    {
+      "index": 47,
+      "received": true,
+      "latencyMs": 11.1257999999998,
+      "httpStatus": 201
+    },
+    {
+      "index": 48,
+      "received": true,
+      "latencyMs": 10.248900000000503,
+      "httpStatus": 201
+    },
+    {
+      "index": 49,
+      "received": true,
+      "latencyMs": 10.548499999999876,
+      "httpStatus": 201
+    },
+    {
+      "index": 50,
+      "received": true,
+      "latencyMs": 9.124799999999595,
+      "httpStatus": 201
+    },
+    {
+      "index": 51,
+      "received": true,
+      "latencyMs": 12.716099999999642,
+      "httpStatus": 201
+    },
+    {
+      "index": 52,
+      "received": true,
+      "latencyMs": 8.44879999999921,
+      "httpStatus": 201
+    },
+    {
+      "index": 53,
+      "received": true,
+      "latencyMs": 9.885700000000725,
+      "httpStatus": 201
+    },
+    {
+      "index": 54,
+      "received": true,
+      "latencyMs": 9.550700000000688,
+      "httpStatus": 201
+    },
+    {
+      "index": 55,
+      "received": true,
+      "latencyMs": 9.57380000000012,
+      "httpStatus": 201
+    },
+    {
+      "index": 56,
+      "received": true,
+      "latencyMs": 10.070999999999913,
+      "httpStatus": 201
+    },
+    {
+      "index": 57,
+      "received": true,
+      "latencyMs": 9.262700000000223,
+      "httpStatus": 201
+    },
+    {
+      "index": 58,
+      "received": true,
+      "latencyMs": 10.645700000000033,
+      "httpStatus": 201
+    },
+    {
+      "index": 59,
+      "received": true,
+      "latencyMs": 10.974299999999857,
+      "httpStatus": 201
+    },
+    {
+      "index": 60,
+      "received": true,
+      "latencyMs": 10.71599999999944,
+      "httpStatus": 201
+    },
+    {
+      "index": 61,
+      "received": true,
+      "latencyMs": 8.815099999999802,
+      "httpStatus": 201
+    },
+    {
+      "index": 62,
+      "received": true,
+      "latencyMs": 10.019400000000132,
+      "httpStatus": 201
+    },
+    {
+      "index": 63,
+      "received": true,
+      "latencyMs": 10.31500000000051,
+      "httpStatus": 201
+    },
+    {
+      "index": 64,
+      "received": true,
+      "latencyMs": 9.642899999999827,
+      "httpStatus": 201
+    },
+    {
+      "index": 65,
+      "received": true,
+      "latencyMs": 9.318200000000616,
+      "httpStatus": 201
+    },
+    {
+      "index": 66,
+      "received": true,
+      "latencyMs": 8.591500000000451,
+      "httpStatus": 201
+    },
+    {
+      "index": 67,
+      "received": true,
+      "latencyMs": 9.530899999999747,
+      "httpStatus": 201
+    },
+    {
+      "index": 68,
+      "received": true,
+      "latencyMs": 8.139500000000226,
+      "httpStatus": 201
+    },
+    {
+      "index": 69,
+      "received": true,
+      "latencyMs": 7.783699999999953,
+      "httpStatus": 201
+    },
+    {
+      "index": 70,
+      "received": true,
+      "latencyMs": 9.247999999999593,
+      "httpStatus": 201
+    },
+    {
+      "index": 71,
+      "received": true,
+      "latencyMs": 8.044200000000274,
+      "httpStatus": 201
+    },
+    {
+      "index": 72,
+      "received": true,
+      "latencyMs": 7.953599999999824,
+      "httpStatus": 201
+    },
+    {
+      "index": 73,
+      "received": true,
+      "latencyMs": 8.902200000000448,
+      "httpStatus": 201
+    },
+    {
+      "index": 74,
+      "received": true,
+      "latencyMs": 9.651299999999537,
+      "httpStatus": 201
+    },
+    {
+      "index": 75,
+      "received": true,
+      "latencyMs": 10.765000000000327,
+      "httpStatus": 201
+    },
+    {
+      "index": 76,
+      "received": true,
+      "latencyMs": 9.585399999999936,
+      "httpStatus": 201
+    },
+    {
+      "index": 77,
+      "received": true,
+      "latencyMs": 11.27810000000045,
+      "httpStatus": 201
+    },
+    {
+      "index": 78,
+      "received": true,
+      "latencyMs": 11.591400000000249,
+      "httpStatus": 201
+    },
+    {
+      "index": 79,
+      "received": true,
+      "latencyMs": 10.811200000000099,
+      "httpStatus": 201
+    },
+    {
+      "index": 80,
+      "received": true,
+      "latencyMs": 10.681100000000697,
+      "httpStatus": 201
+    },
+    {
+      "index": 81,
+      "received": true,
+      "latencyMs": 14.354600000000573,
+      "httpStatus": 201
+    },
+    {
+      "index": 82,
+      "received": true,
+      "latencyMs": 12.037900000000263,
+      "httpStatus": 201
+    },
+    {
+      "index": 83,
+      "received": true,
+      "latencyMs": 11.410399999999754,
+      "httpStatus": 201
+    },
+    {
+      "index": 84,
+      "received": true,
+      "latencyMs": 13.511199999999917,
+      "httpStatus": 201
+    },
+    {
+      "index": 85,
+      "received": true,
+      "latencyMs": 13.466599999999744,
+      "httpStatus": 201
+    },
+    {
+      "index": 86,
+      "received": true,
+      "latencyMs": 12.560300000000097,
+      "httpStatus": 201
+    },
+    {
+      "index": 87,
+      "received": true,
+      "latencyMs": 11.818499999999403,
+      "httpStatus": 201
+    },
+    {
+      "index": 88,
+      "received": true,
+      "latencyMs": 11.324900000000525,
+      "httpStatus": 201
+    },
+    {
+      "index": 89,
+      "received": true,
+      "latencyMs": 11.069100000000617,
+      "httpStatus": 201
+    },
+    {
+      "index": 90,
+      "received": true,
+      "latencyMs": 8.766999999999825,
+      "httpStatus": 201
+    },
+    {
+      "index": 91,
+      "received": true,
+      "latencyMs": 11.154099999999744,
+      "httpStatus": 201
+    },
+    {
+      "index": 92,
+      "received": true,
+      "latencyMs": 10.611499999999978,
+      "httpStatus": 201
+    },
+    {
+      "index": 93,
+      "received": true,
+      "latencyMs": 8.675799999999981,
+      "httpStatus": 201
+    },
+    {
+      "index": 94,
+      "received": true,
+      "latencyMs": 8.981300000000374,
+      "httpStatus": 201
+    },
+    {
+      "index": 95,
+      "received": true,
+      "latencyMs": 9.836299999999937,
+      "httpStatus": 201
+    },
+    {
+      "index": 96,
+      "received": true,
+      "latencyMs": 9.903199999999742,
+      "httpStatus": 201
+    },
+    {
+      "index": 97,
+      "received": true,
+      "latencyMs": 10.823199999999815,
+      "httpStatus": 201
+    },
+    {
+      "index": 98,
+      "received": true,
+      "latencyMs": 9.204600000000028,
+      "httpStatus": 201
+    },
+    {
+      "index": 99,
+      "received": true,
+      "latencyMs": 9.94630000000052,
+      "httpStatus": 201
+    }
+  ]
+}

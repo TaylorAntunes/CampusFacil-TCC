@@ -1,0 +1,31 @@
+{
+  "foreignNotification": [
+    {
+      "id": "b7d016e6-e75f-4277-8e9f-02a587193355",
+      "read": true
+    }
+  ],
+  "uncontractedReviews": [
+    {
+      "rating": 1,
+      "comment": "[Auditoria] Sem contratação"
+    }
+  ],
+  "selfRequests": [
+    {
+      "id": "caaa9a21-6298-447f-923b-11543b153266",
+      "status": "PENDING"
+    }
+  ],
+  "negativePrice": [
+    {
+      "title": "Negativo mwlpcfvl",
+      "price": "-10.000000000000000000000000000000"
+    }
+  ],
+  "fractionReview": [
+    {
+      "rating": 3
+    }
+  ]
+}

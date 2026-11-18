@@ -1,0 +1,3 @@
+Rodada atual: rodada_20261118_3
+18/11/2026 — 195 executados, 195 aprovados, 0 reprovados.
+Relatórios anteriores preservados.

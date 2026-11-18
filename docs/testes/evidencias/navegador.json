@@ -1,0 +1,6 @@
+{
+  "browser": "159.0.8154.6",
+  "tool": "1.65.1",
+  "headless": true,
+  "externalResources": "Recursos externos bloqueados para execução controlada local; fontes, avatares e imagens remotos podem ser substituídos pelo fallback do navegador."
+}

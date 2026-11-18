@@ -1,0 +1,150 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  ADMIN
+  MEMBER
+}
+
+enum RequestStatus {
+  PENDING
+  ACCEPTED
+  IN_PROGRESS
+  REJECTED
+  COMPLETED
+  CANCELLED
+}
+
+model User {
+  id               String           @id @default(uuid())
+  name             String
+  email            String           @unique
+  password_hash    String
+  email_verified_at DateTime?
+  verification_token_hash String? @unique
+  verification_expires_at DateTime?
+  sessions Session[]
+  course           String?
+  semester         String?
+  bio              String?
+  avatar_url       String?
+  location         String?
+  response_time    String?
+  skills           String[]         @default([])
+  role             Role             @default(MEMBER)
+  created_at       DateTime         @default(now())
+  advertisements   Advertisement[]
+  requests         ServiceRequest[]
+  reviews          Review[]
+  sentMessages     Message[]        @relation("SentMessages")
+  receivedMessages Message[]        @relation("ReceivedMessages")
+
+  @@map("users")
+}
+
+model Advertisement {
+  id           String           @id @default(uuid())
+  title        String
+  description  String
+  price        Decimal
+  image        String?
+  availability String
+  created_at   DateTime         @default(now())
+  author       User             @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId     String
+  requests     ServiceRequest[]
+  reviews      Review[]
+  category     Category         @relation(fields: [categoryId], references: [id])
+  categoryId   String
+
+  @@map("advertisements")
+}
+
+model Category {
+  id             String          @id @default(uuid())
+  name           String          @unique
+  advertisements Advertisement[]
+
+  @@map("categories")
+}
+
+model ServiceRequest {
+  id              String         @id @default(uuid())
+  status          RequestStatus  @default(PENDING)
+  created_at      DateTime       @default(now())
+  updated_at      DateTime       @updatedAt
+  advertisementId String?
+  advertisement   Advertisement? @relation(fields: [advertisementId], references: [id], onDelete: Cascade)
+  requester       User           @relation(fields: [requesterId], references: [id], onDelete: Cascade)
+  requesterId     String
+  message         String?
+  order           Order?
+
+  @@map("service_requests")
+}
+
+model Order {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  serviceRequest   ServiceRequest @relation(fields: [serviceRequestId], references: [id], onDelete: Cascade)
+  serviceRequestId String         @unique
+
+  @@map("orders")
+}
+
+model Review {
+  id              String        @id @default(uuid())
+  rating          Int
+  comment         String?
+  created_at      DateTime      @default(now())
+  advertisement   Advertisement @relation(fields: [advertisementId], references: [id], onDelete: Cascade)
+  advertisementId String
+  reviewer        User          @relation(fields: [reviewerId], references: [id], onDelete: Cascade)
+  reviewerId      String
+
+  @@unique([reviewerId, advertisementId])
+  @@map("reviews")
+}
+
+model Notification {
+  id          String   @id @default(uuid())
+  recipientId String
+  type        String
+  message     String
+  read        Boolean  @default(false)
+  created_at  DateTime @default(now())
+  metadata    Json?
+
+  @@map("notifications")
+}
+
+model Message {
+  id         String   @id @default(uuid())
+  senderId   String
+  receiverId String
+  content    String
+  read       Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  sender   User @relation("SentMessages", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver User @relation("ReceivedMessages", fields: [receiverId], references: [id], onDelete: Cascade)
+
+  @@map("messages")
+}
+
+model Session {
+  id String @id @default(uuid())
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  revokedAt DateTime?
+  @@index([userId])
+  @@map("sessions")
+}

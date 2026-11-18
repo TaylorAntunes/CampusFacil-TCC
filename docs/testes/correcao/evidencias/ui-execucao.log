@@ -1,0 +1,81 @@
+CT076 aprovado Cadastro inválido pelo formulário
+CT077 aprovado Login correto no navegador
+CT078 aprovado Histórico após recarregar
+CT079 aprovado Envio pela interface
+CT080 reprovado Logout no navegador
+CT081 aprovado XSS armazenado em título
+CT082 aprovado Abrir ajuda
+CT083 aprovado Pergunta: Como solicitar um serviço?
+CT084 aprovado Pergunta: Como criar um anúncio?
+CT085 aprovado Pergunta: Como funciona o sistema de mensagens?
+CT086 aprovado Pergunta: Como avaliar um serviço?
+CT087 aprovado Pergunta: Quem pode se cadastrar?
+CT088 aprovado Pergunta: Como combinar as condições do serviço?
+CT089 aprovado Fechar ajuda
+CT090 aprovado Persistência do tema claro
+CT091 aprovado Chatbot no tema claro
+CT092 aprovado inicio 360x800 light
+CT093 aprovado cadastro 360x800 light
+CT094 aprovado login 360x800 light
+CT095 aprovado explorar 360x800 light
+CT096 aprovado prestador 360x800 light
+CT097 aprovado chat 360x800 light
+CT098 aprovado painel 360x800 light
+CT099 aprovado solicitacoes 360x800 light
+CT100 aprovado inicio 360x800 dark
+CT101 aprovado cadastro 360x800 dark
+CT102 aprovado login 360x800 dark
+CT103 aprovado explorar 360x800 dark
+CT104 aprovado prestador 360x800 dark
+CT105 aprovado chat 360x800 dark
+CT106 aprovado painel 360x800 dark
+CT107 aprovado solicitacoes 360x800 dark
+CT108 aprovado inicio 390x844 light
+CT109 aprovado cadastro 390x844 light
+CT110 aprovado login 390x844 light
+CT111 aprovado explorar 390x844 light
+CT112 aprovado prestador 390x844 light
+CT113 aprovado chat 390x844 light
+CT114 aprovado painel 390x844 light
+CT115 aprovado solicitacoes 390x844 light
+CT116 aprovado inicio 390x844 dark
+CT117 aprovado cadastro 390x844 dark
+CT118 aprovado login 390x844 dark
+CT119 aprovado explorar 390x844 dark
+CT120 aprovado prestador 390x844 dark
+CT121 aprovado chat 390x844 dark
+CT122 aprovado painel 390x844 dark
+CT123 aprovado solicitacoes 390x844 dark
+CT124 aprovado inicio 768x1024 light
+CT125 aprovado cadastro 768x1024 light
+CT126 aprovado login 768x1024 light
+CT127 aprovado explorar 768x1024 light
+CT128 aprovado prestador 768x1024 light
+CT129 aprovado chat 768x1024 light
+CT130 aprovado painel 768x1024 light
+CT131 aprovado solicitacoes 768x1024 light
+CT132 aprovado inicio 768x1024 dark
+CT133 aprovado cadastro 768x1024 dark
+CT134 aprovado login 768x1024 dark
+CT135 aprovado explorar 768x1024 dark
+CT136 aprovado prestador 768x1024 dark
+CT137 aprovado chat 768x1024 dark
+CT138 aprovado painel 768x1024 dark
+CT139 aprovado solicitacoes 768x1024 dark
+CT140 aprovado inicio 1920x1080 light
+CT141 aprovado cadastro 1920x1080 light
+CT142 aprovado login 1920x1080 light
+CT143 aprovado explorar 1920x1080 light
+CT144 aprovado prestador 1920x1080 light
+CT145 aprovado chat 1920x1080 light
+CT146 aprovado painel 1920x1080 light
+CT147 aprovado solicitacoes 1920x1080 light
+CT148 aprovado inicio 1920x1080 dark
+CT149 aprovado cadastro 1920x1080 dark
+CT150 aprovado login 1920x1080 dark
+CT151 aprovado explorar 1920x1080 dark
+CT152 aprovado prestador 1920x1080 dark
+CT153 aprovado chat 1920x1080 dark
+CT154 aprovado painel 1920x1080 dark
+CT155 aprovado solicitacoes 1920x1080 dark
+UI concluída 80

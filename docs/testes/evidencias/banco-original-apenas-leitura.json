@@ -1,0 +1,10 @@
+{
+  "timestamp": "2026-11-18T05:58:39.963Z",
+  "note": "Consulta final apenas leitura. Não é comparação antes/depois; isolamento assegurado pelas URLs de teste e pelo nome exclusivo do banco.",
+  "counts": {
+    "users": 5,
+    "advertisements": 9,
+    "reviews": 18,
+    "messages": 3
+  }
+}

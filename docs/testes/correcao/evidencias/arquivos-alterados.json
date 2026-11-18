@@ -1,0 +1,332 @@
+[
+  {
+    "path": "backend/.gitignore",
+    "kind": "modificado",
+    "beforeSha256": "1c8b33e1b370455519c1bd764210004197a116005ddd1a35d1d1049d1c93bf6a",
+    "afterSha256": "9b902817b46d331658b50354b2d2f8a6b1701bf943373d9268444c07ede6fccc"
+  },
+  {
+    "path": "backend/EMAIL_LOCAL.md",
+    "kind": "criado",
+    "beforeSha256": null,
+    "afterSha256": "47779adeb0815e4354fa61c787e20d7b06e66a97f09200a9bbf7ca1a3e901ddd"
+  },
+  {
+    "path": "backend/package-lock.json",
+    "kind": "modificado",
+    "beforeSha256": "4dd86771cd53745ead903569d29012f258c6fd046cf5d1f3f48035e3b55ff166",
+    "afterSha256": "c8fcf7777075e3f3033bc1c4e2c91278ca4c797a7abee130f43ea26a91c37233"
+  },
+  {
+    "path": "backend/package.json",
+    "kind": "modificado",
+    "beforeSha256": "dc04b03b2ce29cb0092c4bb230121adb94bf592260ca9dbb6a387b2dd5132247",
+    "afterSha256": "766d721d4e30dec924e0b28b8355f17943dd03c72a08049fd833aa98f9e9825e"
+  },
+  {
+    "path": "backend/prisma/migrations/20261118090000_security_sessions_and_constraints/migration.sql",
+    "kind": "criado",
+    "beforeSha256": null,
+    "afterSha256": "5b34779bcdf414577f495c3cb5d80c2ee1951ebe32c47896cbd0e17a3fb96f6f"
+  },
+  {
+    "path": "backend/prisma/schema.prisma",
+    "kind": "modificado",
+    "beforeSha256": "79a3c78fc651c869f29e2e93c958aa5d4a34dbcd288908ef06caa8af6ddc87e1",
+    "afterSha256": "aaea112a805bafddbbd0b290c6ab120ae9a7673c52a91708260dec785f77114d"
+  },
+  {
+    "path": "backend/scripts/build.cjs",
+    "kind": "criado",
+    "beforeSha256": null,
+    "afterSha256": "0fac9cbda8dc0cf21c6169636cb48c50b5130c47af97c6a646588623d8cc30c9"
+  },
+  {
+    "path": "backend/src/@types/fastify-jwt.d.ts",
+    "kind": "modificado",
+    "beforeSha256": "7f2309797fadb6b1bbaf9dedf4400566bedfda6ab0039cd6e292333bdaf36c7e",
+    "afterSha256": "621c03c2f191925f24c67d874b08c10f0cc9d43e95a9d83d8ff5da5ee49acff3"
+  },
+  {
+    "path": "backend/src/http/controllers/advertisements/create.ts",
+    "kind": "modificado",
+    "beforeSha256": "65141f2e8e7000722e61c30df742120472a70c023ec0fd48096ceae2bc59e4ec",
+    "afterSha256": "cf8d5b7ff8d6c9d1ca83ec3476bc6ff410b5ead2890735febb5fdf642167a99b"
+  },
+  {
+    "path": "backend/src/http/controllers/advertisements/search.ts",
+    "kind": "modificado",
+    "beforeSha256": "f87570167e5278a0650188f2ddc6bf055e7179aec4e728fa3b6c110aca183528",
+    "afterSha256": "61041bfcdd6cc178fae62f98b4fd730cf94bce3cae244dead806200a9ad5d8dd"
+  },
+  {
+    "path": "backend/src/http/controllers/advertisements/update.ts",
+    "kind": "modificado",
+    "beforeSha256": "b74b6b87831f3449228564d1983cc5fafe03672f57c0b910e748247b90b9f8cd",
+    "afterSha256": "825c79605a87748542d6768d8cd04599fb8582d7c457555699daf490801c52fe"
+  },
+  {
+    "path": "backend/src/http/controllers/messages/send-message.ts",
+    "kind": "modificado",
+    "beforeSha256": "813fd229a2648682908f72acc9fc64ccacfa6bf3a4504be7acfe9d5a3596ad68",
+    "afterSha256": "e29114dc3944b3eb84eb91d2e3d20b63d86a52da4d1d32f6df9e3a5d1255e00e"
+  },
+  {
+    "path": "backend/src/http/controllers/notifications/mark-as-read.ts",
+    "kind": "modificado",
+    "beforeSha256": "8597a96d750f7469c1ac02b1b335412fa0c59abb9fe7973049408c634c3cffcb",
+    "afterSha256": "426c877aa51cd73a2c7d216d886f824db5ea9caa8af5c5faff05210f5825044a"
+  },
+  {
+    "path": "backend/src/http/controllers/reviews/create.ts",
+    "kind": "modificado",
+    "beforeSha256": "4aeda1dcc12700a6612bb747eedba23e709e830be6c38cdf0a50058b79b639d8",
+    "afterSha256": "9f54683cff862bca8e6a1d0a7f954424a7a1939241715680c5c9c3263442f424"
+  },
+  {
+    "path": "backend/src/http/controllers/sellers/get-sellers-controller.ts",
+    "kind": "modificado",
+    "beforeSha256": "48e97f24ff8d54255ba9c51c3f537885c4eac09ef88e51dd605aec8a6c51dc47",
+    "afterSha256": "5aba297940f5fa11b0c54b8691b411108909a8b001772edc627dce33b22748e7"
+  },
+  {
+    "path": "backend/src/http/controllers/service-requests/create-generic-request.ts",
+    "kind": "modificado",
+    "beforeSha256": "2c91c19451c5280f0c470bc1fecfe349b90fcc5938359780ad066b4b195973e4",
+    "afterSha256": "40a0088db7fa27a7f091ff254024af88c048c83f01518165f140b516e26e80be"
+  },
+  {
+    "path": "backend/src/http/controllers/service-requests/create.ts",
+    "kind": "modificado",
+    "beforeSha256": "853118989901172ba1eb6715e2d1c7902eef643589330c182704f864371adc43",
+    "afterSha256": "588f4d432a76fa511a64b0c8648abd7c058b1ae4c48a6e1171ed5677b24c2c0e"
+  },
+  {
+    "path": "backend/src/http/controllers/service-requests/delete-controller.ts",
+    "kind": "modificado",
+    "beforeSha256": "f90ea0e0c553c9bb8b0fc423d2d7a8801819201a1b7a41b86815c1df982e8157",
+    "afterSha256": "555d7fe5183aae5b0dd0604f2a2d626d7089516e20dcd815b623676b7d90c723"
+  },
+  {
+    "path": "backend/src/http/controllers/service-requests/fetch-by-user.ts",
+    "kind": "modificado",
+    "beforeSha256": "fad22e20d037ac296cf2ef70d3064775b1d193cc67dddd530ad762885135b350",
+    "afterSha256": "9ab810bb8d9200a18ed4afe306472f69d0559e22f00d2ad69f9a35b64778b02d"
+  },
+  {
+    "path": "backend/src/http/controllers/service-requests/update-status.ts",
+    "kind": "modificado",
+    "beforeSha256": "421308a0565eefbd64cf158c899e3103cd7e0f97a66dc8776fed7b6421599059",
+    "afterSha256": "c7720d670216ab03bd61cd0ed22179df167d9c18f825d459df53e3b503c315bb"
+  },
+  {
+    "path": "backend/src/http/controllers/users/authenticate.ts",
+    "kind": "modificado",
+    "beforeSha256": "3b7500608536154cefbcd872445a7c7181cff9944ee8cd63878409437b95c4ff",
+    "afterSha256": "f1bee0dd3976b4146aed1da14e647ebb4239b3dc7b952818c12807902018ff81"
+  },
+  {
+    "path": "backend/src/http/controllers/users/email-verification.ts",
+    "kind": "criado",
+    "beforeSha256": null,
+    "afterSha256": "86688fd2c9c20ce96f5f83ac725740b9b031421284afdd7c4e4b9d5e81ac6ac2"
+  },
+  {
+    "path": "backend/src/http/controllers/users/logout.ts",
+    "kind": "criado",
+    "beforeSha256": null,
+    "afterSha256": "e49fd440378a64264732c115c53984325b82c11f1515fe6ec741b7b242e09a94"
+  },
+  {
+    "path": "backend/src/http/controllers/users/register.ts",
+    "kind": "modificado",
+    "beforeSha256": "23651f0017a7b7499d4004536535578ca7ba278ae122a934c2a0a771e9d59c26",
+    "afterSha256": "1d95c638ae92dd37a04b2717721b6533f115f9e54ba75318e235057681d96d83"
+  },
+  {
+    "path": "backend/src/http/controllers/users/routes.ts",
+    "kind": "modificado",
+    "beforeSha256": "47e4fbbd1a8e8684a5f1edc57a6d4244bae5078adffccd615511e1ebe418a747",
+    "afterSha256": "1771c82a36ce41fa7f2d5880a219040aa28e8f666f984df04ffab5a04b22e99f"
+  },
+  {
+    "path": "backend/src/http/controllers/users/upload-avatar-controller.ts",
+    "kind": "modificado",
+    "beforeSha256": "b0758a3165d97c95ad43ace26c57e23f36954bfb83b584c0f1cb9363e5593e78",
+    "afterSha256": "baddd9527f06f4e3a37e33cd110fbbbd0a11c9983e757acda64633d591e02663"
+  },
+  {
+    "path": "backend/src/http/middlewares/verify-jwt.ts",
+    "kind": "modificado",
+    "beforeSha256": "5188f9db4bc420472d7f7c7f03a96b1dceed76d28813a2d3a2b188c04466be64",
+    "afterSha256": "2113fb42c58e5f76c792d6b795d0a626d64db74fc6a10079a053e311f50aa354"
+  },
+  {
+    "path": "backend/src/repositories/in-memory/in-memory-advertisements-repository.ts",
+    "kind": "modificado",
+    "beforeSha256": "7045dcb1d0fea3482b41ec44f3c7e71345d9c27d9b044c3027844d7260a9917f",
+    "afterSha256": "b605ead245446cce3f01f781d29a2d8e53cca93799ed7ed91f2012c663d57f73"
+  },
+  {
+    "path": "backend/src/repositories/in-memory/in-memory-notifications-repository.ts",
+    "kind": "modificado",
+    "beforeSha256": "90a225318560dea4a31c38f54527bf0f40eab921e7cd426458fca4dd36287048",
+    "afterSha256": "4bc58ac3a6101a2cbf842e844a72d6ce4fe13baeafc0ea0ad5bb4d3dfe3790b0"
+  },
+  {
+    "path": "backend/src/repositories/in-memory/in-memory-service-requests-repository.ts",
+    "kind": "modificado",
+    "beforeSha256": "ef40b444fa96d7547d7f1014867a4a40972438c269eb0bfb533ed5ae118680f2",
+    "afterSha256": "8186d6fee4e6bb38a89936ea5e74d66206b915915f1959c9bdfb92172b2b62be"
+  },
+  {
+    "path": "backend/src/repositories/prisma/prisma-advertisements-repository.ts",
+    "kind": "modificado",
+    "beforeSha256": "156bf8b6262e51214415a031b4d06c8e1c0719bfb888f5a00a79f4d9dba55c30",
+    "afterSha256": "1794f66b7efda1bdb4e148e96162f68e308ef8ea32f1223c16c3556c63d99cac"
+  },
+  {
+    "path": "backend/src/repositories/prisma/prisma-recent-activity-repository.ts",
+    "kind": "modificado",
+    "beforeSha256": "87d029e80b1589b557eb6e8f53baa8fb59c8dfaf36627389f67b5986635c34b8",
+    "afterSha256": "736479641764a3311aa7d1ab93b675572b75174a6142021a45e1a33d56f38260"
+  },
+  {
+    "path": "backend/src/server.ts",
+    "kind": "modificado",
+    "beforeSha256": "9912a7db56726400618b3a4109c62c4de3bf94fa09092a04fbb2aee178df8c4a",
+    "afterSha256": "ead79b1485f869280501d5915a2b8a5eb2601609cdb6f08006569fb8e9ce2e08"
+  },
+  {
+    "path": "backend/src/services/create-service-request.ts",
+    "kind": "modificado",
+    "beforeSha256": "2c7541671621f9967650bd6015ba75dccc356e33e83c6036175b22509f281e34",
+    "afterSha256": "565ea96878e4df107e005254a5f3792ab0ed877359e64881a3075f63cc060aca"
+  },
+  {
+    "path": "backend/src/services/delete-service-request.ts",
+    "kind": "modificado",
+    "beforeSha256": "cf01a3da3a668f796a419364f4b6f6211ae9182b9664504157943bf656cbd430",
+    "afterSha256": "9aaaf5b7397615056618dada561ee4db426fb70520bad72f2b1f234d815738bc"
+  },
+  {
+    "path": "backend/src/services/email-verification.ts",
+    "kind": "criado",
+    "beforeSha256": null,
+    "afterSha256": "ef97fa455a7e46aae1afe81761aca55c691a6bac2e1c5d86f026b456841789f8"
+  },
+  {
+    "path": "backend/src/services/errors/http-error.ts",
+    "kind": "criado",
+    "beforeSha256": null,
+    "afterSha256": "ef29f4449ce553c60563e9a9d5b0d7e3d841e9a3ea914473eec1f7bfa537e4ca"
+  },
+  {
+    "path": "backend/src/services/errors/service-already-requested-error.ts",
+    "kind": "modificado",
+    "beforeSha256": "258f4729ec4b2b232be13dc3aa305477304f8b275c37881f41f39042ae720583",
+    "afterSha256": "ac86b015d1b44f7becf1fdafd03160929d0cb4da02dd52a0b7d971d3dbe2737d"
+  },
+  {
+    "path": "backend/src/services/factories/make-create-service-request-service.ts",
+    "kind": "modificado",
+    "beforeSha256": "59a32f6a856d9c8dfdd4ea15767dffad68a75fa73139510640542173da396437",
+    "afterSha256": "7f5a7228b1f7860d2a9f96081994d0121f83685b3c2a6ac9ac2cbbabdf604e67"
+  },
+  {
+    "path": "backend/src/services/factories/make-delete-service-request-service.ts",
+    "kind": "modificado",
+    "beforeSha256": "3aa673446c8663e2494a3eab21bdc9ae8616cf0f170f16b16a4eb4fab1199a93",
+    "afterSha256": "efff9b72c28be1c88d90c96e7b0ad75faa22caefa4282cc1d0423e911419e213"
+  },
+  {
+    "path": "backend/src/services/mark-notification-as-read.ts",
+    "kind": "modificado",
+    "beforeSha256": "c01ad7fd6485c6bda2ed88f1a7bc871174e7dd33d4baa4d0c24eabf7b2f81a87",
+    "afterSha256": "9637a97df6369b51753e73793f36554209d4b60affebc8de275ae76905e13a04"
+  },
+  {
+    "path": "backend/src/services/register.ts",
+    "kind": "modificado",
+    "beforeSha256": "bb54d023628830f3ba7796d4d94da7193325dd9c23960acdba288ba73610e3e3",
+    "afterSha256": "c8b29effb2b395c92029b6070a83927cb4b543bc00b5107df6a870e69370b031"
+  },
+  {
+    "path": "backend/src/services/session.ts",
+    "kind": "criado",
+    "beforeSha256": null,
+    "afterSha256": "1b6cc92445a3eb7f3f0f5e81b55d9376a3888005aa6c2ba3e6b90d4f8b2d86b5"
+  },
+  {
+    "path": "backend/src/utils/safe-image.ts",
+    "kind": "criado",
+    "beforeSha256": null,
+    "afterSha256": "732213b87fff79daa511ca174975997f254fc35b20474c4443a28cc715ea072f"
+  },
+  {
+    "path": "backend/src/utils/serialize-user-profile.ts",
+    "kind": "modificado",
+    "beforeSha256": "8856206ba6fc13b11fe115b1a74a384564fc9daf29e68eb1c6e9604c2d16259f",
+    "afterSha256": "83c8faaabf73fc21db2142624cd6d31e1a30219e449665b9726e7f4e87a07fd6"
+  },
+  {
+    "path": "backend/src/utils/upload-advertisement-image.ts",
+    "kind": "modificado",
+    "beforeSha256": "cbd2d9483998c17607f1bc273ef3c25a63015bc510f6ca9ccc3c5cbf1d834c92",
+    "afterSha256": "ae814e9d94ca6fe155184ee1036543e1ce9158f1754554c020948cfd63c4f819"
+  },
+  {
+    "path": "frontend/src/App.tsx",
+    "kind": "modificado",
+    "beforeSha256": "725eb8371a128f698aecf2ec417351249265f731dd44ffd3e1af9b14b5ec08b4",
+    "afterSha256": "c384f25b2d25b200f7e28e008f5858e11341a892e1250e18ba7351ad451d436e"
+  },
+  {
+    "path": "frontend/src/components/Navbar.tsx",
+    "kind": "modificado",
+    "beforeSha256": "81ad6bb20d53bbb206a8773b59b6473ccae7a2f4602a47f7036774cb61841408",
+    "afterSha256": "4b9aacb526b64a5a3c0ab0a44318da3cac6ccb98990003476152a205f9c2c4a3"
+  },
+  {
+    "path": "frontend/src/contexts/AuthContext.tsx",
+    "kind": "modificado",
+    "beforeSha256": "1256a9a0cc1b583da02cfd763e4aba3a9fec81cadae2772237d90050e4ca7108",
+    "afterSha256": "62526b5ff09c8a0b506854fe5da29ec275fda25666f5fa402f79a5646d6732de"
+  },
+  {
+    "path": "frontend/src/lib/socket-client.d.ts",
+    "kind": "modificado",
+    "beforeSha256": "39b7ffdf4f1b901034de36c7f31c938b1619b61d69c1e410ca72cf7884197acb",
+    "afterSha256": "c6f8f67f156507ea297f57bdc6c07e40c1cb3ed52cd713a23ece89e41e2138d8"
+  },
+  {
+    "path": "frontend/src/pages/ConversationsPage.tsx",
+    "kind": "modificado",
+    "beforeSha256": "ea054d439c9c6ba350a1ed67061320bf3941ae1bc89a5a8a4e86308540e67383",
+    "afterSha256": "92f2d1e0938396b941fd6ba61948e405f15211c2057544f7d18608f1204a379d"
+  },
+  {
+    "path": "frontend/src/pages/LoginPage.tsx",
+    "kind": "modificado",
+    "beforeSha256": "d9f80f3b34172fce78352144649cdcea554dc1132ce9be5d263b63d2346ab5a1",
+    "afterSha256": "f8b91a0a7940fc3306f139565eb294ac0b8a93125a8fb9fb1c385ad8dfd4b5c4"
+  },
+  {
+    "path": "frontend/src/pages/RegisterPage.tsx",
+    "kind": "modificado",
+    "beforeSha256": "5169baecc7685fdc3cf71eeb349392f360918052345013e77f225898e179553b",
+    "afterSha256": "ebf4f7430135c3c7a6148e0c3254818143bd8fd27aebe8b8cbaaff582535c6a0"
+  },
+  {
+    "path": "frontend/src/pages/VerifyEmailPage.tsx",
+    "kind": "criado",
+    "beforeSha256": null,
+    "afterSha256": "54d5437c1ad4106ce2d6f754db9cb6ef3d533194bcfc8504d46b7486d2cd21f9"
+  },
+  {
+    "path": "frontend/src/services/auth.service.ts",
+    "kind": "modificado",
+    "beforeSha256": "2c1a3a31498c750d16a1e81d22dc683970175f7500feaf710c7739fef3276570",
+    "afterSha256": "ceeaee590f81426ae9636ff6b4c3d6b06fc53e394c7920d7b0489c520eb16732"
+  }
+]

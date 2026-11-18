@@ -1,0 +1,52 @@
+[
+  {
+    "name": "inicio-360-claro",
+    "route": "/",
+    "width": 360,
+    "height": 800,
+    "theme": "light",
+    "auth": false,
+    "file": "evidencias/capturas/figura-inicio-360-claro.png",
+    "timestamp": "2026-11-18T16:36:43.560Z"
+  },
+  {
+    "name": "cadastro-390-claro",
+    "route": "/register",
+    "width": 390,
+    "height": 844,
+    "theme": "light",
+    "auth": false,
+    "file": "evidencias/capturas/figura-cadastro-390-claro.png",
+    "timestamp": "2026-11-18T16:36:45.164Z"
+  },
+  {
+    "name": "chat-390-claro",
+    "route": "/conversas/84daeaba-c1a1-4bbf-b47e-a2f71d24c1f1",
+    "width": 390,
+    "height": 844,
+    "theme": "light",
+    "auth": true,
+    "file": "evidencias/capturas/figura-chat-390-claro.png",
+    "timestamp": "2026-11-18T16:36:46.961Z"
+  },
+  {
+    "name": "prestador-768-escuro",
+    "route": "/seller/0ad81f23-4de0-42fe-b77e-72e52c0e72fb",
+    "width": 768,
+    "height": 1024,
+    "theme": "dark",
+    "auth": false,
+    "file": "evidencias/capturas/figura-prestador-768-escuro.png",
+    "timestamp": "2026-11-18T16:36:48.724Z"
+  },
+  {
+    "name": "painel-1920-claro",
+    "route": "/dashboard",
+    "width": 1920,
+    "height": 1080,
+    "theme": "light",
+    "auth": true,
+    "file": "evidencias/capturas/figura-painel-1920-claro.png",
+    "timestamp": "2026-11-18T16:36:50.693Z"
+  }
+]

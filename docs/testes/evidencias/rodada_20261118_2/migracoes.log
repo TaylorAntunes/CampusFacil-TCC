@@ -1,0 +1,64 @@
+Datasource "db": PostgreSQL database "campusfacil_audit_20261118161837", schema "public" at "localhost:5432"
+
+17 migrations found in prisma/migrations
+
+Applying migration `20250930183940_add_category_to_advertisement`
+Applying migration `20250930184250_create_notifications_table`
+Applying migration `20251027112057_add_category_model`
+Applying migration `20251027114315_add_user_profile_fields`
+Applying migration `20251027125233_add_order_model`
+Applying migration `20251104162704_add_message_to_service_request`
+Applying migration `20251104164659_make_advertisement_id_optional_in_service_request`
+Applying migration `20251104203307_fix_request_status_enum`
+Applying migration `20251104205515_fix_request_status_enum`
+Applying migration `20251104215407_add_metadata_to_notification`
+Applying migration `20251104222854_create_message_model`
+Applying migration `20251106134744_cascade_delete`
+Applying migration `20251111175343_add_unique_constraint_to_review`
+Applying migration `20251111190059_add_avatar_url_to_user`
+Applying migration `20260405120000_add_image_to_advertisements`
+Applying migration `20260406120000_add_public_profile_fields`
+Applying migration `20261118090000_security_sessions_and_constraints`
+
+The following migration(s) have been applied:
+
+migrations/
+  └─ 20250930183940_add_category_to_advertisement/
+    └─ migration.sql
+  └─ 20250930184250_create_notifications_table/
+    └─ migration.sql
+  └─ 20251027112057_add_category_model/
+    └─ migration.sql
+  └─ 20251027114315_add_user_profile_fields/
+    └─ migration.sql
+  └─ 20251027125233_add_order_model/
+    └─ migration.sql
+  └─ 20251104162704_add_message_to_service_request/
+    └─ migration.sql
+  └─ 20251104164659_make_advertisement_id_optional_in_service_request/
+    └─ migration.sql
+  └─ 20251104203307_fix_request_status_enum/
+    └─ migration.sql
+  └─ 20251104205515_fix_request_status_enum/
+    └─ migration.sql
+  └─ 20251104215407_add_metadata_to_notification/
+    └─ migration.sql
+  └─ 20251104222854_create_message_model/
+    └─ migration.sql
+  └─ 20251106134744_cascade_delete/
+    └─ migration.sql
+  └─ 20251111175343_add_unique_constraint_to_review/
+    └─ migration.sql
+  └─ 20251111190059_add_avatar_url_to_user/
+    └─ migration.sql
+  └─ 20260405120000_add_image_to_advertisements/
+    └─ migration.sql
+  └─ 20260406120000_add_public_profile_fields/
+    └─ migration.sql
+  └─ 20261118090000_security_sessions_and_constraints/
+    └─ migration.sql
+
+All migrations have been successfully applied.
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.

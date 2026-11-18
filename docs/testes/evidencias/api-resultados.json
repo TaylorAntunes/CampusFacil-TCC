@@ -1,0 +1,1277 @@
+[
+  {
+    "id": "CT001",
+    "area": "Autenticação",
+    "title": "Cadastro institucional",
+    "requirement": "Autenticação",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "POST /users com e-mail @ifce.edu.br e senha gerada em memória",
+    "expected": "HTTP 201; usuário persistido",
+    "obtained": "{\"id\":\"c1e0b6e1-2492-4834-8878-53e04675dc5a\",\"created\":true}",
+    "status": "aprovado",
+    "durationMs": 70.37920000000003,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      0,
+      3
+    ]
+  },
+  {
+    "id": "CT002",
+    "area": "Autenticação",
+    "title": "Cadastro externo",
+    "requirement": "Autenticação",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "POST /users com domínio gmail.com",
+    "expected": "HTTP 400 e nenhuma conta criada",
+    "obtained": "HTTP 400; sem inserção",
+    "status": "aprovado",
+    "durationMs": 10.15730000000002,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      3,
+      4
+    ]
+  },
+  {
+    "id": "CT003",
+    "area": "Autenticação",
+    "title": "Cadastro duplicado",
+    "requirement": "Autenticação",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Repetir o e-mail do prestador",
+    "expected": "HTTP 409",
+    "obtained": "HTTP 409",
+    "status": "aprovado",
+    "durationMs": 10.659099999999967,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      4,
+      5
+    ]
+  },
+  {
+    "id": "CT004",
+    "area": "Autenticação",
+    "title": "Dados inválidos no cadastro",
+    "requirement": "Autenticação",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Enviar nome numérico, e-mail malformado e senha curta",
+    "expected": "HTTP 400/422, sem erro interno",
+    "obtained": "Esperada rejeição 4xx, recebido 500",
+    "status": "reprovado",
+    "durationMs": 6.365499999999997,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      5,
+      6
+    ]
+  },
+  {
+    "id": "CT005",
+    "area": "Autenticação",
+    "title": "Nome vazio no cadastro",
+    "requirement": "Autenticação",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "POST /users com name vazio e e-mail institucional",
+    "expected": "Rejeitar nome vazio",
+    "obtained": "Esperada rejeição 4xx, recebido 201",
+    "status": "reprovado",
+    "durationMs": 19.141200000000026,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      6,
+      7
+    ]
+  },
+  {
+    "id": "CT006",
+    "area": "Autenticação",
+    "title": "Sufixos de domínio maliciosos",
+    "requirement": "Autenticação",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Testar subdomínio e domínio concatenado",
+    "expected": "Todos rejeitados",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 15.817300000000046,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      7,
+      10
+    ]
+  },
+  {
+    "id": "CT007",
+    "area": "Autenticação",
+    "title": "Login correto",
+    "requirement": "Autenticação",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Criar solicitante e terceiro, efetuar login real",
+    "expected": "Token válido permite /me",
+    "obtained": "Duas contas adicionais; sessões válidas",
+    "status": "aprovado",
+    "durationMs": 59.386300000000006,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      10,
+      16
+    ]
+  },
+  {
+    "id": "CT008",
+    "area": "Autenticação",
+    "title": "Senha incorreta",
+    "requirement": "Autenticação",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "POST /sessions com senha diferente",
+    "expected": "HTTP 400 sem token",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 12.232399999999984,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      16,
+      17
+    ]
+  },
+  {
+    "id": "CT009",
+    "area": "Autenticação",
+    "title": "Rotas protegidas sem token",
+    "requirement": "Autenticação",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "GET /me, /users/orders, /notifications/user e /dashboard/stats",
+    "expected": "HTTP 401 em todas",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 12.755400000000009,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      17,
+      21
+    ]
+  },
+  {
+    "id": "CT010",
+    "area": "Autenticação",
+    "title": "JWT inválido e expirado",
+    "requirement": "Autenticação",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "GET /me com token inválido e JWT de teste expirado assinado com a chave exclusiva do teste",
+    "expected": "HTTP 401",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 11.366200000000049,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      21,
+      23
+    ]
+  },
+  {
+    "id": "CT011",
+    "area": "Autenticação",
+    "title": "Hash bcrypt",
+    "requirement": "Autenticação",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Consultar somente conta fictícia e comparar em memória sem exportar hash",
+    "expected": "Senha diferente do hash; bcrypt.compare verdadeiro",
+    "obtained": "{\"algorithm\":\"bcrypt\",\"cost\":6,\"compare\":true}",
+    "status": "aprovado",
+    "durationMs": 15.354299999999967,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      23,
+      23
+    ]
+  },
+  {
+    "id": "CT012",
+    "area": "Autenticação",
+    "title": "Titularidade do e-mail institucional",
+    "requirement": "Autenticação",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Cadastrar endereço fictício sem caixa postal e tentar /me",
+    "expected": "Conta não verificada não deveria acessar funções restritas à comunidade",
+    "obtained": "Conta acessa /me imediatamente sem confirmar posse do e-mail; filtro de domínio não comprova vínculo",
+    "status": "reprovado",
+    "durationMs": 5.727499999999964,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      23,
+      24
+    ]
+  },
+  {
+    "id": "CT013",
+    "area": "Perfis",
+    "title": "Visualização do próprio perfil",
+    "requirement": "Perfis",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "GET /me",
+    "expected": "HTTP 200 sem password_hash",
+    "obtained": "{\"fields\":[\"id\",\"name\",\"email\",\"course\",\"semester\",\"bio\",\"avatar_url\",\"location\",\"response_time\",\"skills\",\"role\",\"created_at\"]}",
+    "status": "aprovado",
+    "durationMs": 5.065200000000004,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      24,
+      25
+    ]
+  },
+  {
+    "id": "CT014",
+    "area": "Perfis",
+    "title": "Atualização pessoal",
+    "requirement": "Perfis",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "PUT /me com curso, semestre, bio e skills",
+    "expected": "Dados persistidos e retornados",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 9.227599999999939,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      25,
+      26
+    ]
+  },
+  {
+    "id": "CT015",
+    "area": "Perfis",
+    "title": "Não alterar perfil alheio",
+    "requirement": "Perfis",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "PUT /me com userId do terceiro e nome modificado",
+    "expected": "Campo userId injetado não modifica terceiro",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 9.018400000000042,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      26,
+      27
+    ]
+  },
+  {
+    "id": "CT016",
+    "area": "Perfis",
+    "title": "Upload de avatar PNG",
+    "requirement": "Perfis",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Enviar PNG mínimo via FormData e consultar arquivo servido",
+    "expected": "HTTP 200; URL acessível; perfil atualizado",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 20.069699999999898,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      27,
+      28
+    ]
+  },
+  {
+    "id": "CT017",
+    "area": "Perfis",
+    "title": "Upload rejeita texto",
+    "requirement": "Perfis",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Enviar text/plain como avatar",
+    "expected": "HTTP 400",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 5.092100000000073,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      28,
+      29
+    ]
+  },
+  {
+    "id": "CT018",
+    "area": "Perfis",
+    "title": "Perfil público do prestador",
+    "requirement": "Perfis",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "GET /sellers/:id sem autenticação",
+    "expected": "HTTP 200 sem hash da senha",
+    "obtained": "{\"publicFields\":[\"id\",\"name\",\"email\",\"course\",\"semester\",\"bio\",\"avatar_url\",\"location\",\"response_time\",\"skills\",\"role\",\"created_at\"]}",
+    "status": "aprovado",
+    "durationMs": 27.11189999999999,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      29,
+      30
+    ]
+  },
+  {
+    "id": "CT019",
+    "area": "Anúncios",
+    "title": "Criação válida",
+    "requirement": "Anúncios",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "POST /advertisements com categoria existente",
+    "expected": "HTTP 201 e registro persistido",
+    "obtained": "{\"ad\":\"4f1f39f4-b142-482f-a4c0-fcddcbd13347\"}",
+    "status": "aprovado",
+    "durationMs": 12.250400000000013,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      30,
+      31
+    ]
+  },
+  {
+    "id": "CT020",
+    "area": "Anúncios",
+    "title": "Listagem e palavra-chave",
+    "requirement": "Anúncios",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "GET /advertisements?q=",
+    "expected": "Busca retorna anúncio esperado",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 8.904699999999934,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      31,
+      32
+    ]
+  },
+  {
+    "id": "CT021",
+    "area": "Anúncios",
+    "title": "Filtro por categoria",
+    "requirement": "Anúncios",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "GET /advertisements?category=nome",
+    "expected": "Todos os anúncios retornados pertencem à categoria",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 15.597399999999993,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      32,
+      33
+    ]
+  },
+  {
+    "id": "CT022",
+    "area": "Anúncios",
+    "title": "Edição própria",
+    "requirement": "Anúncios",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "PUT /advertisements/:id",
+    "expected": "HTTP 200 e valor persistido",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 14.07000000000005,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      33,
+      34
+    ]
+  },
+  {
+    "id": "CT023",
+    "area": "Anúncios",
+    "title": "Campos ausentes",
+    "requirement": "Anúncios",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "POST /advertisements sem descrição/categoria",
+    "expected": "HTTP 400",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 5.228799999999978,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      34,
+      35
+    ]
+  },
+  {
+    "id": "CT024",
+    "area": "Anúncios",
+    "title": "Preço negativo",
+    "requirement": "Anúncios",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "POST com price=-10",
+    "expected": "HTTP 400/422",
+    "obtained": "Esperada rejeição 4xx, recebido 201",
+    "status": "reprovado",
+    "durationMs": 9.724000000000046,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      35,
+      36
+    ]
+  },
+  {
+    "id": "CT025",
+    "area": "Anúncios",
+    "title": "Título e descrição vazios",
+    "requirement": "Anúncios",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "POST com strings vazias",
+    "expected": "HTTP 400/422",
+    "obtained": "Esperada rejeição 4xx, recebido 201",
+    "status": "reprovado",
+    "durationMs": 8.292100000000005,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      36,
+      37
+    ]
+  },
+  {
+    "id": "CT026",
+    "area": "Anúncios",
+    "title": "Edição de terceiro",
+    "requirement": "Anúncios",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "PUT com sessão de terceiro",
+    "expected": "HTTP 403 e título preservado",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 8.421399999999949,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      37,
+      38
+    ]
+  },
+  {
+    "id": "CT027",
+    "area": "Anúncios",
+    "title": "Exclusão de terceiro",
+    "requirement": "Anúncios",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "DELETE com sessão de terceiro",
+    "expected": "HTTP 403; registro mantido",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 8.9842000000001,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      38,
+      39
+    ]
+  },
+  {
+    "id": "CT028",
+    "area": "Anúncios",
+    "title": "Exclusão própria",
+    "requirement": "Anúncios",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Criar anúncio descartável e excluir pelo proprietário",
+    "expected": "HTTP 204; registro removido",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 21.744300000000067,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      39,
+      41
+    ]
+  },
+  {
+    "id": "CT029",
+    "area": "Solicitações",
+    "title": "Criar solicitação",
+    "requirement": "Solicitações",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Solicitante chama POST /service-requests",
+    "expected": "HTTP 201 e status PENDING",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 21.37270000000001,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      41,
+      42
+    ]
+  },
+  {
+    "id": "CT030",
+    "area": "Solicitações",
+    "title": "Duplicação ativa",
+    "requirement": "Solicitações",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Repetir POST para o mesmo serviço",
+    "expected": "HTTP 400/409 sem segunda solicitação",
+    "obtained": "Esperada rejeição 4xx, recebido 500",
+    "status": "reprovado",
+    "durationMs": 6.30720000000008,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      42,
+      43
+    ]
+  },
+  {
+    "id": "CT031",
+    "area": "Solicitações",
+    "title": "Terceiro altera status",
+    "requirement": "Solicitações",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "PATCH status ACCEPTED por terceiro",
+    "expected": "HTTP 403",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 7.29200000000003,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      43,
+      44
+    ]
+  },
+  {
+    "id": "CT032",
+    "area": "Solicitações",
+    "title": "Transição inválida",
+    "requirement": "Solicitações",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Solicitante tenta PENDING→COMPLETED",
+    "expected": "HTTP 400",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 10.131899999999973,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      44,
+      45
+    ]
+  },
+  {
+    "id": "CT033",
+    "area": "Solicitações",
+    "title": "Aceitar solicitação",
+    "requirement": "Solicitações",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Prestador aceita solicitação",
+    "expected": "HTTP 200 e ACCEPTED",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 22.17139999999995,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      45,
+      46
+    ]
+  },
+  {
+    "id": "CT034",
+    "area": "Avaliações",
+    "title": "Avaliar antes da conclusão",
+    "requirement": "Avaliações",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Avaliar com solicitação ACCEPTED",
+    "expected": "HTTP 400/403; sem avaliação",
+    "obtained": "Esperada rejeição 4xx, recebido 201",
+    "status": "reprovado",
+    "durationMs": 16.073900000000094,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      46,
+      47
+    ]
+  },
+  {
+    "id": "CT035",
+    "area": "Solicitações",
+    "title": "Iniciar serviço",
+    "requirement": "Solicitações",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Solicitante inicia após aceite",
+    "expected": "HTTP 200 e IN_PROGRESS",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 24.563199999999938,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      47,
+      48
+    ]
+  },
+  {
+    "id": "CT036",
+    "area": "Solicitações",
+    "title": "Concluir serviço",
+    "requirement": "Solicitações",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Solicitante conclui serviço iniciado",
+    "expected": "HTTP 200 e COMPLETED",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 18.156299999999987,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      48,
+      49
+    ]
+  },
+  {
+    "id": "CT037",
+    "area": "Avaliações",
+    "title": "Avaliação após conclusão",
+    "requirement": "Avaliações",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Remover apenas avaliação antecipada do próprio ensaio, se a falha a criou; avaliar após conclusão",
+    "expected": "HTTP 201 e média consistente",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 37.77620000000002,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      49,
+      51
+    ]
+  },
+  {
+    "id": "CT038",
+    "area": "Avaliações",
+    "title": "Avaliação duplicada",
+    "requirement": "Avaliações",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Repetir avaliação do mesmo serviço e usuário",
+    "expected": "HTTP 409/400, sem erro interno",
+    "obtained": "Esperada rejeição 4xx, recebido 500",
+    "status": "reprovado",
+    "durationMs": 14.319400000000087,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      51,
+      52
+    ]
+  },
+  {
+    "id": "CT039",
+    "area": "Avaliações",
+    "title": "Serviço não contratado",
+    "requirement": "Avaliações",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Terceiro sem contrato tenta avaliar",
+    "expected": "HTTP 400/403",
+    "obtained": "Esperada rejeição 4xx, recebido 201",
+    "status": "reprovado",
+    "durationMs": 26.182700000000068,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      52,
+      53
+    ]
+  },
+  {
+    "id": "CT040",
+    "area": "Avaliações",
+    "title": "Estrelas fora do intervalo",
+    "requirement": "Avaliações",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "POST /reviews com estrelas inválidas",
+    "expected": "HTTP 400/422 para 0 e 6",
+    "obtained": "Esperada rejeição 4xx, recebido 500",
+    "status": "reprovado",
+    "durationMs": 5.276100000000042,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      53,
+      54
+    ]
+  },
+  {
+    "id": "CT041",
+    "area": "Avaliações",
+    "title": "Estrelas fracionárias",
+    "requirement": "Avaliações",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "POST /reviews com rating=3.5",
+    "expected": "HTTP 400/422",
+    "obtained": "Esperada rejeição 4xx, recebido 201",
+    "status": "reprovado",
+    "durationMs": 11.75019999999995,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      54,
+      55
+    ]
+  },
+  {
+    "id": "CT042",
+    "area": "Solicitações",
+    "title": "Contratar próprio serviço",
+    "requirement": "Solicitações",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Prestador solicita o próprio anúncio",
+    "expected": "HTTP 400/403",
+    "obtained": "Esperada rejeição 4xx, recebido 201",
+    "status": "reprovado",
+    "durationMs": 14.884599999999864,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      55,
+      56
+    ]
+  },
+  {
+    "id": "CT043",
+    "area": "Solicitações",
+    "title": "Recusar solicitação",
+    "requirement": "Solicitações",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Criar outro anúncio e solicitação, prestador recusa",
+    "expected": "PENDING→REJECTED permitido para prestador",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 39.39720000000011,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      56,
+      59
+    ]
+  },
+  {
+    "id": "CT044",
+    "area": "Solicitações",
+    "title": "Cancelar solicitação",
+    "requirement": "Solicitações",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Nova solicitação após recusa e cancelamento",
+    "expected": "PENDING→CANCELLED pelo solicitante",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 28.55040000000008,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      59,
+      61
+    ]
+  },
+  {
+    "id": "CT045",
+    "area": "Solicitações",
+    "title": "Acompanhamento",
+    "requirement": "Solicitações",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "GET /users/orders",
+    "expected": "Solicitações pertencentes ao usuário retornadas",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 8.43100000000004,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      61,
+      62
+    ]
+  },
+  {
+    "id": "CT046",
+    "area": "Solicitações",
+    "title": "Exclusão por terceiro (IDOR)",
+    "requirement": "Solicitações",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Criar solicitação descartável e DELETE com terceiro",
+    "expected": "HTTP 403; solicitação mantida",
+    "obtained": "Esperada rejeição 4xx, recebido 204",
+    "status": "reprovado",
+    "durationMs": 22.608799999999974,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      62,
+      64
+    ]
+  },
+  {
+    "id": "CT047",
+    "area": "Chat",
+    "title": "Mensagem persistida",
+    "requirement": "Chat",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "POST /messages de A para B; GET thread em B",
+    "expected": "HTTP 201; conteúdo no banco e histórico",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 17.379599999999982,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      64,
+      66
+    ]
+  },
+  {
+    "id": "CT048",
+    "area": "Chat",
+    "title": "Mensagem para si mesmo",
+    "requirement": "Chat",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "POST recipientId igual ao autor",
+    "expected": "HTTP 400",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 4.608299999999872,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      66,
+      67
+    ]
+  },
+  {
+    "id": "CT049",
+    "area": "Chat",
+    "title": "Histórico de terceiros (HTTP)",
+    "requirement": "Chat",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "GET /messages/A por C",
+    "expected": "Terceiro não recebe conversa A↔B",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 10.071699999999964,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      67,
+      68
+    ]
+  },
+  {
+    "id": "CT050",
+    "area": "Chat",
+    "title": "Mensagem em branco",
+    "requirement": "Chat",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Enviar somente espaços",
+    "expected": "HTTP 400/422 e sem persistência",
+    "obtained": "Esperada rejeição 4xx, recebido 201",
+    "status": "reprovado",
+    "durationMs": 10.849899999999934,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      68,
+      69
+    ]
+  },
+  {
+    "id": "CT051",
+    "area": "Chat",
+    "title": "Remetente injetado",
+    "requirement": "Chat",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Enviar senderId de C no corpo com sessão A",
+    "expected": "Servidor usa identidade do JWT",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 12.190000000000055,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      69,
+      70
+    ]
+  },
+  {
+    "id": "CT052",
+    "area": "Socket.IO",
+    "title": "Entrega em tempo real",
+    "requirement": "Socket.IO",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Conectar B e C e enviar mensagem A→B por HTTP autenticado",
+    "expected": "Evento recebido por B e persistido",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 270.8654999999999,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      70,
+      71
+    ]
+  },
+  {
+    "id": "CT053",
+    "area": "Socket.IO",
+    "title": "Isolamento entre salas legítimas",
+    "requirement": "Socket.IO",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Conectar C com sua identidade; monitorar evento por 400ms",
+    "expected": "C não recebe mensagem A→B",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 409.5602000000001,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      71,
+      72
+    ]
+  },
+  {
+    "id": "CT054",
+    "area": "Socket.IO",
+    "title": "Conexão sem identidade",
+    "requirement": "Socket.IO",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Conectar sem auth e observar estado após 300ms",
+    "expected": "Servidor desconecta sessão sem userId",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 422.70619999999985,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      72,
+      72
+    ]
+  },
+  {
+    "id": "CT055",
+    "area": "Socket.IO",
+    "title": "Assumir identidade sem JWT",
+    "requirement": "Socket.IO",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Conectar apenas com userId de B e enviar A→B",
+    "expected": "Conexão com userId da vítima deve ser rejeitada e não receber evento",
+    "obtained": "Conexão sem token usando userId de B recebeu conteúdo privado\n\ntrue !== false\n",
+    "status": "reprovado",
+    "durationMs": 638.0457999999999,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      72,
+      73
+    ]
+  },
+  {
+    "id": "CT056",
+    "area": "Socket.IO",
+    "title": "JWT inválido com userId válido",
+    "requirement": "Socket.IO",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Conectar com userId B e token inválido",
+    "expected": "Não entrar na sala privada",
+    "obtained": "Servidor aceitou userId válido mesmo com token inválido\n\ntrue !== false\n",
+    "status": "reprovado",
+    "durationMs": 323.6956,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      73,
+      73
+    ]
+  },
+  {
+    "id": "CT057",
+    "area": "Socket.IO",
+    "title": "Reconexão e histórico",
+    "requirement": "Socket.IO",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Desconectar B, enviar offline, reconectar B e enviar online",
+    "expected": "Reconexão recebe novos eventos; histórico inclui mensagem offline",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 150.93280000000004,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      73,
+      76
+    ]
+  },
+  {
+    "id": "CT058",
+    "area": "Desempenho",
+    "title": "100 entregas reais de mensagens",
+    "requirement": "Desempenho",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Enviar sequencialmente 100 POSTs e medir performance.now de antes do HTTP até evento no cliente B no mesmo processo",
+    "expected": "100 eventos correlacionados recebidos; métricas gravadas",
+    "obtained": "{\"sent\":100,\"received\":100,\"failures\":0,\"minMs\":6.026299999999992,\"maxMs\":16.13209999999981,\"meanMs\":9.051842,\"medianMs\":8.698849999999993,\"p95Ms\":12.003399999999601,\"method\":\"HTTP POST iniciado → evento new_message recebido; mesmo processo/relógio monotônico; serial; loopback; inclui HTTP, persistência PostgreSQL e Socket.IO; sem aquecimento excluído\",\"timestamp\":\"2026-11-18T05:50:09.664Z\"}",
+    "status": "aprovado",
+    "durationMs": 1127.7565000000004,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      76,
+      176
+    ]
+  },
+  {
+    "id": "CT059",
+    "area": "Notificações",
+    "title": "Recebimento interno",
+    "requirement": "Notificações",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "GET /notifications/user do prestador",
+    "expected": "Listagem inclui solicitação criada",
+    "obtained": "{\"count\":6}",
+    "status": "aprovado",
+    "durationMs": 7.016700000000128,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      176,
+      177
+    ]
+  },
+  {
+    "id": "CT060",
+    "area": "Notificações",
+    "title": "Marcar como lida",
+    "requirement": "Notificações",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "PATCH /notifications/:id/read pelo titular",
+    "expected": "read=true no banco",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 9.363099999999577,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      177,
+      178
+    ]
+  },
+  {
+    "id": "CT061",
+    "area": "Notificações",
+    "title": "IDOR leitura de terceiro",
+    "requirement": "Notificações",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Criar notificação fictícia para A e marcar com C",
+    "expected": "HTTP 403 e read preservado",
+    "obtained": "Esperada rejeição 4xx, recebido 200",
+    "status": "reprovado",
+    "durationMs": 12.353699999999662,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      178,
+      179
+    ]
+  },
+  {
+    "id": "CT062",
+    "area": "Notificações",
+    "title": "Exclusão por terceiro",
+    "requirement": "Notificações",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "DELETE notificação de A pela sessão C",
+    "expected": "HTTP 403",
+    "obtained": "HTTP esperado 403; recebido 500: {\"statusCode\":500,\"error\":\"Internal Server Error\",\"message\":\"Not allowed.\"}\n\n500 !== 403\n",
+    "status": "reprovado",
+    "durationMs": 7.021499999999833,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      179,
+      180
+    ]
+  },
+  {
+    "id": "CT063",
+    "area": "Notificações",
+    "title": "Contagem e marcar todas",
+    "requirement": "Notificações",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "PATCH /notifications/read/all; conferir banco",
+    "expected": "Sem notificações não lidas do usuário",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 9.540899999999965,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      180,
+      181
+    ]
+  },
+  {
+    "id": "CT064",
+    "area": "Notificações",
+    "title": "Criação e evento",
+    "requirement": "Notificações",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Conectar A; POST notificação fictícia para A",
+    "expected": "HTTP 201 e evento new_notification real",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 134.6791000000003,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      181,
+      182
+    ]
+  },
+  {
+    "id": "CT065",
+    "area": "Painel",
+    "title": "Consistência dos indicadores",
+    "requirement": "Painel",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "GET /dashboard/stats comparado com SELECTs no banco isolado",
+    "expected": "Valores coincidem com agregações SQL independentes",
+    "obtained": "{\"api\":{\"publishedAdvertisements\":4,\"activeServiceRequests\":0,\"unreadMessages\":0,\"rating\":3,\"monthlyEarnings\":30,\"monthlySpent\":0,\"contracts\":1},\"sql\":{\"ads\":4,\"active\":0,\"unread\":0,\"rating\":3,\"total\":30}}",
+    "status": "aprovado",
+    "durationMs": 16.754899999999907,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      182,
+      183
+    ]
+  },
+  {
+    "id": "CT066",
+    "area": "Segurança",
+    "title": "SQL Injection em busca/login",
+    "requirement": "Segurança",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "GET busca e POST login com aspas e payload SQL",
+    "expected": "Sem bypass; banco íntegro",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 20.916000000000167,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      183,
+      185
+    ]
+  },
+  {
+    "id": "CT067",
+    "area": "Segurança",
+    "title": "Ausência de hash em mensagens/perfil",
+    "requirement": "Segurança",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Consultar thread e seller",
+    "expected": "Nenhuma resposta pública testada contém password_hash",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 22.50720000000001,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      185,
+      187
+    ]
+  },
+  {
+    "id": "CT068",
+    "area": "Segurança",
+    "title": "Mass assignment de role",
+    "requirement": "Segurança",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "PUT /me com role ADMIN e password_hash injetados",
+    "expected": "Role permanece MEMBER",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 10.011400000000322,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      187,
+      188
+    ]
+  },
+  {
+    "id": "CT069",
+    "area": "Banco",
+    "title": "Unicidade do e-mail",
+    "requirement": "Banco",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "INSERT direto em transação controlada com e-mail já existente",
+    "expected": "SQLSTATE 23505; sem duplicação",
+    "obtained": "SQLSTATE 23505",
+    "status": "aprovado",
+    "durationMs": 2.061999999999898,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      188,
+      188
+    ]
+  },
+  {
+    "id": "CT070",
+    "area": "Banco",
+    "title": "Integridade referencial",
+    "requirement": "Banco",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "INSERT direto com FK inválida",
+    "expected": "SQLSTATE 23503 para anúncio com autor inexistente",
+    "obtained": "SQLSTATE 23503",
+    "status": "aprovado",
+    "durationMs": 14.415299999999661,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      188,
+      188
+    ]
+  },
+  {
+    "id": "CT071",
+    "area": "Banco",
+    "title": "Campo obrigatório nulo",
+    "requirement": "Banco",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "INSERT users com nome NULL",
+    "expected": "SQLSTATE 23502",
+    "obtained": "SQLSTATE 23502",
+    "status": "aprovado",
+    "durationMs": 13.182600000000093,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      188,
+      188
+    ]
+  },
+  {
+    "id": "CT072",
+    "area": "Banco",
+    "title": "Persistência em conexão nova",
+    "requirement": "Banco",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Abrir cliente novo e consultar entidades criadas",
+    "expected": "Mensagem e anúncio recuperados por outro cliente PostgreSQL",
+    "obtained": "\"Asserções satisfeitas\"",
+    "status": "aprovado",
+    "durationMs": 14.744499999999789,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      188,
+      188
+    ]
+  },
+  {
+    "id": "CT073",
+    "area": "Banco",
+    "title": "Unicidade de avaliação",
+    "requirement": "Banco",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "INSERT review duplicado pelo par já avaliado",
+    "expected": "SQLSTATE 23505 para par reviewer/anúncio",
+    "obtained": "SQLSTATE 23505",
+    "status": "aprovado",
+    "durationMs": 12.13090000000011,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      188,
+      188
+    ]
+  },
+  {
+    "id": "CT074",
+    "area": "Banco",
+    "title": "Restrições de domínio na camada SQL",
+    "requirement": "Banco",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Inserir avaliação inválida em transação e sempre ROLLBACK",
+    "expected": "Banco deve rejeitar rating=8 se regra também existir no schema",
+    "obtained": "Banco aceita rating=8; não há CHECK de faixa (API deve compensar).",
+    "status": "reprovado",
+    "durationMs": 15.706500000000233,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      188,
+      188
+    ]
+  },
+  {
+    "id": "CT075",
+    "area": "Segurança",
+    "title": "Hash exposto na resposta de upload",
+    "requirement": "Segurança",
+    "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4333; contas fictícias do mesmo lote.",
+    "procedure": "Enviar PNG e inspecionar somente os nomes dos campos retornados",
+    "expected": "Resposta de avatar não deve incluir hash da senha",
+    "obtained": "Resposta de upload inclui password_hash do usuário; valor omitido das evidências",
+    "status": "reprovado",
+    "durationMs": 13.511199999999917,
+    "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+    "traceRange": [
+      188,
+      189
+    ]
+  }
+]

@@ -1,0 +1,2776 @@
+{
+  "date": "2026-11-18T06:22:16.193Z",
+  "counts": {
+    "planned": 174,
+    "executed": 174,
+    "approved": 174,
+    "failed": 0,
+    "blocked": 0,
+    "previousFailures": 26,
+    "previousFailuresNowApproved": 26
+  },
+  "results": [
+    {
+      "id": "CT001",
+      "area": "Autenticação",
+      "title": "Cadastro institucional",
+      "requirement": "Autenticação",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "POST /users com e-mail @ifce.edu.br e senha gerada em memória",
+      "expected": "HTTP 201; usuário persistido",
+      "obtained": "{\"id\":\"ff960e5d-9e03-479b-a40b-7b35b97a09b9\",\"created\":true}",
+      "status": "aprovado",
+      "durationMs": 1123.0096,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        0,
+        4
+      ]
+    },
+    {
+      "id": "CT002",
+      "area": "Autenticação",
+      "title": "Cadastro externo",
+      "requirement": "Autenticação",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "POST /users com domínio gmail.com",
+      "expected": "HTTP 400 e nenhuma conta criada",
+      "obtained": "HTTP 400; sem inserção",
+      "status": "aprovado",
+      "durationMs": 12.596199999999953,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "CT003",
+      "area": "Autenticação",
+      "title": "Cadastro duplicado",
+      "requirement": "Autenticação",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Repetir o e-mail do prestador",
+      "expected": "HTTP 409",
+      "obtained": "HTTP 409",
+      "status": "aprovado",
+      "durationMs": 402.4377999999999,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        5,
+        6
+      ]
+    },
+    {
+      "id": "CT004",
+      "area": "Autenticação",
+      "title": "Dados inválidos no cadastro",
+      "requirement": "Autenticação",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Enviar nome numérico, e-mail malformado e senha curta",
+      "expected": "HTTP 400/422, sem erro interno",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 12.048400000000129,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        6,
+        7
+      ]
+    },
+    {
+      "id": "CT005",
+      "area": "Autenticação",
+      "title": "Nome vazio no cadastro",
+      "requirement": "Autenticação",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "POST /users com name vazio e e-mail institucional",
+      "expected": "Rejeitar nome vazio",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 30.003799999999956,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        7,
+        8
+      ]
+    },
+    {
+      "id": "CT006",
+      "area": "Autenticação",
+      "title": "Sufixos de domínio maliciosos",
+      "requirement": "Autenticação",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Testar subdomínio e domínio concatenado",
+      "expected": "Todos rejeitados",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 25.550399999999627,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        8,
+        11
+      ]
+    },
+    {
+      "id": "CT007",
+      "area": "Autenticação",
+      "title": "Login correto",
+      "requirement": "Autenticação",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Criar solicitante e terceiro, efetuar login real",
+      "expected": "Token válido permite /me",
+      "obtained": "Duas contas adicionais; sessões válidas",
+      "status": "aprovado",
+      "durationMs": 1608.8101000000001,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        11,
+        19
+      ]
+    },
+    {
+      "id": "CT008",
+      "area": "Autenticação",
+      "title": "Senha incorreta",
+      "requirement": "Autenticação",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "POST /sessions com senha diferente",
+      "expected": "HTTP 400 sem token",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 349.7044999999998,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        19,
+        20
+      ]
+    },
+    {
+      "id": "CT009",
+      "area": "Autenticação",
+      "title": "Rotas protegidas sem token",
+      "requirement": "Autenticação",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "GET /me, /users/orders, /notifications/user e /dashboard/stats",
+      "expected": "HTTP 401 em todas",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 18.87169999999969,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        20,
+        24
+      ]
+    },
+    {
+      "id": "CT010",
+      "area": "Autenticação",
+      "title": "JWT inválido e expirado",
+      "requirement": "Autenticação",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "GET /me com token inválido e JWT de teste expirado assinado com a chave exclusiva do teste",
+      "expected": "HTTP 401",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 12.291700000000674,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        24,
+        26
+      ]
+    },
+    {
+      "id": "CT011",
+      "area": "Autenticação",
+      "title": "Hash bcrypt",
+      "requirement": "Autenticação",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Consultar somente conta fictícia e comparar em memória sem exportar hash",
+      "expected": "Senha diferente do hash; bcrypt.compare verdadeiro",
+      "obtained": "{\"algorithm\":\"bcrypt\",\"cost\":12,\"compare\":true}",
+      "status": "aprovado",
+      "durationMs": 391.0594000000001,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        26,
+        26
+      ]
+    },
+    {
+      "id": "CT012",
+      "area": "Autenticação",
+      "title": "Titularidade do e-mail institucional",
+      "requirement": "Autenticação",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Cadastrar endereço fictício sem caixa postal e tentar /me",
+      "expected": "Conta não verificada não deveria acessar funções restritas à comunidade",
+      "obtained": "Login bloqueado até confirmar e-mail; demais contas confirmadas via caixa local para os testes",
+      "status": "aprovado",
+      "durationMs": 736.5272000000004,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        26,
+        28
+      ]
+    },
+    {
+      "id": "CT013",
+      "area": "Perfis",
+      "title": "Visualização do próprio perfil",
+      "requirement": "Perfis",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "GET /me",
+      "expected": "HTTP 200 sem password_hash",
+      "obtained": "{\"fields\":[\"id\",\"name\",\"email\",\"email_verified_at\",\"course\",\"semester\",\"bio\",\"avatar_url\",\"location\",\"response_time\",\"skills\",\"role\",\"created_at\"]}",
+      "status": "aprovado",
+      "durationMs": 9.15440000000035,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        28,
+        29
+      ]
+    },
+    {
+      "id": "CT014",
+      "area": "Perfis",
+      "title": "Atualização pessoal",
+      "requirement": "Perfis",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "PUT /me com curso, semestre, bio e skills",
+      "expected": "Dados persistidos e retornados",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 20.93209999999999,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        29,
+        30
+      ]
+    },
+    {
+      "id": "CT015",
+      "area": "Perfis",
+      "title": "Não alterar perfil alheio",
+      "requirement": "Perfis",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "PUT /me com userId do terceiro e nome modificado",
+      "expected": "Campo userId injetado não modifica terceiro",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 15.774500000000444,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        30,
+        31
+      ]
+    },
+    {
+      "id": "CT016",
+      "area": "Perfis",
+      "title": "Upload de avatar PNG",
+      "requirement": "Perfis",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Enviar PNG mínimo via FormData e consultar arquivo servido",
+      "expected": "HTTP 200; URL acessível; perfil atualizado",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 40.400800000000345,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        31,
+        32
+      ]
+    },
+    {
+      "id": "CT017",
+      "area": "Perfis",
+      "title": "Upload rejeita texto",
+      "requirement": "Perfis",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Enviar text/plain como avatar",
+      "expected": "HTTP 400",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 11.191100000000006,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        32,
+        33
+      ]
+    },
+    {
+      "id": "CT018",
+      "area": "Perfis",
+      "title": "Perfil público do prestador",
+      "requirement": "Perfis",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "GET /sellers/:id sem autenticação",
+      "expected": "HTTP 200 sem hash da senha",
+      "obtained": "{\"publicFields\":[\"id\",\"name\",\"email\",\"email_verified_at\",\"course\",\"semester\",\"bio\",\"avatar_url\",\"location\",\"response_time\",\"skills\",\"role\",\"created_at\"]}",
+      "status": "aprovado",
+      "durationMs": 49.51170000000002,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        33,
+        34
+      ]
+    },
+    {
+      "id": "CT019",
+      "area": "Anúncios",
+      "title": "Criação válida",
+      "requirement": "Anúncios",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "POST /advertisements com categoria existente",
+      "expected": "HTTP 201 e registro persistido",
+      "obtained": "{\"ad\":\"219f9556-d7e7-46ad-97c4-2bdd52ec4999\"}",
+      "status": "aprovado",
+      "durationMs": 28.262299999999414,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        34,
+        35
+      ]
+    },
+    {
+      "id": "CT020",
+      "area": "Anúncios",
+      "title": "Listagem e palavra-chave",
+      "requirement": "Anúncios",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "GET /advertisements?q=",
+      "expected": "Busca retorna anúncio esperado",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 19.756400000000212,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        35,
+        36
+      ]
+    },
+    {
+      "id": "CT021",
+      "area": "Anúncios",
+      "title": "Filtro por categoria",
+      "requirement": "Anúncios",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "GET /advertisements?category=nome",
+      "expected": "Todos os anúncios retornados pertencem à categoria",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 17.651699999999437,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        36,
+        37
+      ]
+    },
+    {
+      "id": "CT022",
+      "area": "Anúncios",
+      "title": "Edição própria",
+      "requirement": "Anúncios",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "PUT /advertisements/:id",
+      "expected": "HTTP 200 e valor persistido",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 28.92280000000028,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        37,
+        38
+      ]
+    },
+    {
+      "id": "CT023",
+      "area": "Anúncios",
+      "title": "Campos ausentes",
+      "requirement": "Anúncios",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "POST /advertisements sem descrição/categoria",
+      "expected": "HTTP 400",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 11.249300000000403,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        38,
+        39
+      ]
+    },
+    {
+      "id": "CT024",
+      "area": "Anúncios",
+      "title": "Preço negativo",
+      "requirement": "Anúncios",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "POST com price=-10",
+      "expected": "HTTP 400/422",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 10.269500000000335,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        39,
+        40
+      ]
+    },
+    {
+      "id": "CT025",
+      "area": "Anúncios",
+      "title": "Título e descrição vazios",
+      "requirement": "Anúncios",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "POST com strings vazias",
+      "expected": "HTTP 400/422",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 9.21939999999995,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        40,
+        41
+      ]
+    },
+    {
+      "id": "CT026",
+      "area": "Anúncios",
+      "title": "Edição de terceiro",
+      "requirement": "Anúncios",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "PUT com sessão de terceiro",
+      "expected": "HTTP 403 e título preservado",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 17.627300000000105,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        41,
+        42
+      ]
+    },
+    {
+      "id": "CT027",
+      "area": "Anúncios",
+      "title": "Exclusão de terceiro",
+      "requirement": "Anúncios",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "DELETE com sessão de terceiro",
+      "expected": "HTTP 403; registro mantido",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 14.523699999999735,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        42,
+        43
+      ]
+    },
+    {
+      "id": "CT028",
+      "area": "Anúncios",
+      "title": "Exclusão própria",
+      "requirement": "Anúncios",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Criar anúncio descartável e excluir pelo proprietário",
+      "expected": "HTTP 204; registro removido",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 44.01649999999972,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        43,
+        45
+      ]
+    },
+    {
+      "id": "CT029",
+      "area": "Solicitações",
+      "title": "Criar solicitação",
+      "requirement": "Solicitações",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Solicitante chama POST /service-requests",
+      "expected": "HTTP 201 e status PENDING",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 33.77390000000014,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        45,
+        46
+      ]
+    },
+    {
+      "id": "CT030",
+      "area": "Solicitações",
+      "title": "Duplicação ativa",
+      "requirement": "Solicitações",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Repetir POST para o mesmo serviço",
+      "expected": "HTTP 400/409 sem segunda solicitação",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 9.603099999999358,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        46,
+        47
+      ]
+    },
+    {
+      "id": "CT031",
+      "area": "Solicitações",
+      "title": "Terceiro altera status",
+      "requirement": "Solicitações",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "PATCH status ACCEPTED por terceiro",
+      "expected": "HTTP 403",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 14.717400000000453,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        47,
+        48
+      ]
+    },
+    {
+      "id": "CT032",
+      "area": "Solicitações",
+      "title": "Transição inválida",
+      "requirement": "Solicitações",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Solicitante tenta PENDING→COMPLETED",
+      "expected": "HTTP 400",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 17.15219999999954,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        48,
+        49
+      ]
+    },
+    {
+      "id": "CT033",
+      "area": "Solicitações",
+      "title": "Aceitar solicitação",
+      "requirement": "Solicitações",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Prestador aceita solicitação",
+      "expected": "HTTP 200 e ACCEPTED",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 38.59180000000015,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        49,
+        50
+      ]
+    },
+    {
+      "id": "CT034",
+      "area": "Avaliações",
+      "title": "Avaliar antes da conclusão",
+      "requirement": "Avaliações",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Avaliar com solicitação ACCEPTED",
+      "expected": "HTTP 400/403; sem avaliação",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 17.99039999999968,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        50,
+        51
+      ]
+    },
+    {
+      "id": "CT035",
+      "area": "Solicitações",
+      "title": "Iniciar serviço",
+      "requirement": "Solicitações",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Solicitante inicia após aceite",
+      "expected": "HTTP 200 e IN_PROGRESS",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 36.97699999999986,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        51,
+        52
+      ]
+    },
+    {
+      "id": "CT036",
+      "area": "Solicitações",
+      "title": "Concluir serviço",
+      "requirement": "Solicitações",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Solicitante conclui serviço iniciado",
+      "expected": "HTTP 200 e COMPLETED",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 30.29070000000047,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        52,
+        53
+      ]
+    },
+    {
+      "id": "CT037",
+      "area": "Avaliações",
+      "title": "Avaliação após conclusão",
+      "requirement": "Avaliações",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Remover apenas avaliação antecipada do próprio ensaio, se a falha a criou; avaliar após conclusão",
+      "expected": "HTTP 201 e média consistente",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 61.210399999999936,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        53,
+        55
+      ]
+    },
+    {
+      "id": "CT038",
+      "area": "Avaliações",
+      "title": "Avaliação duplicada",
+      "requirement": "Avaliações",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Repetir avaliação do mesmo serviço e usuário",
+      "expected": "HTTP 409/400, sem erro interno",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 65.44920000000002,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        55,
+        56
+      ]
+    },
+    {
+      "id": "CT039",
+      "area": "Avaliações",
+      "title": "Serviço não contratado",
+      "requirement": "Avaliações",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Terceiro sem contrato tenta avaliar",
+      "expected": "HTTP 400/403",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 13.969599999999446,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        56,
+        57
+      ]
+    },
+    {
+      "id": "CT040",
+      "area": "Avaliações",
+      "title": "Estrelas fora do intervalo",
+      "requirement": "Avaliações",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "POST /reviews com estrelas inválidas",
+      "expected": "HTTP 400/422 para 0 e 6",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 17.039299999999457,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        57,
+        59
+      ]
+    },
+    {
+      "id": "CT041",
+      "area": "Avaliações",
+      "title": "Estrelas fracionárias",
+      "requirement": "Avaliações",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "POST /reviews com rating=3.5",
+      "expected": "HTTP 400/422",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 8.224699999999757,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        59,
+        60
+      ]
+    },
+    {
+      "id": "CT042",
+      "area": "Solicitações",
+      "title": "Contratar próprio serviço",
+      "requirement": "Solicitações",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Prestador solicita o próprio anúncio",
+      "expected": "HTTP 400/403",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 38.108000000000175,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        60,
+        61
+      ]
+    },
+    {
+      "id": "CT043",
+      "area": "Solicitações",
+      "title": "Recusar solicitação",
+      "requirement": "Solicitações",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Criar outro anúncio e solicitação, prestador recusa",
+      "expected": "PENDING→REJECTED permitido para prestador",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 83.60260000000017,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        61,
+        64
+      ]
+    },
+    {
+      "id": "CT044",
+      "area": "Solicitações",
+      "title": "Cancelar solicitação",
+      "requirement": "Solicitações",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Nova solicitação após recusa e cancelamento",
+      "expected": "PENDING→CANCELLED pelo solicitante",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 51.13889999999992,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        64,
+        66
+      ]
+    },
+    {
+      "id": "CT045",
+      "area": "Solicitações",
+      "title": "Acompanhamento",
+      "requirement": "Solicitações",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "GET /users/orders",
+      "expected": "Solicitações pertencentes ao usuário retornadas",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 14.175900000000183,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        66,
+        67
+      ]
+    },
+    {
+      "id": "CT046",
+      "area": "Solicitações",
+      "title": "Exclusão por terceiro (IDOR)",
+      "requirement": "Solicitações",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Criar solicitação descartável e DELETE com terceiro",
+      "expected": "HTTP 403; solicitação mantida",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 39.111399999999776,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        67,
+        69
+      ]
+    },
+    {
+      "id": "CT047",
+      "area": "Chat",
+      "title": "Mensagem persistida",
+      "requirement": "Chat",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "POST /messages de A para B; GET thread em B",
+      "expected": "HTTP 201; conteúdo no banco e histórico",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 35.98869999999988,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        69,
+        71
+      ]
+    },
+    {
+      "id": "CT048",
+      "area": "Chat",
+      "title": "Mensagem para si mesmo",
+      "requirement": "Chat",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "POST recipientId igual ao autor",
+      "expected": "HTTP 400",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 7.835800000000745,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        71,
+        72
+      ]
+    },
+    {
+      "id": "CT049",
+      "area": "Chat",
+      "title": "Histórico de terceiros (HTTP)",
+      "requirement": "Chat",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "GET /messages/A por C",
+      "expected": "Terceiro não recebe conversa A↔B",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 14.321199999999408,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        72,
+        73
+      ]
+    },
+    {
+      "id": "CT050",
+      "area": "Chat",
+      "title": "Mensagem em branco",
+      "requirement": "Chat",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Enviar somente espaços",
+      "expected": "HTTP 400/422 e sem persistência",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 7.476200000000063,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        73,
+        74
+      ]
+    },
+    {
+      "id": "CT051",
+      "area": "Chat",
+      "title": "Remetente injetado",
+      "requirement": "Chat",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Enviar senderId de C no corpo com sessão A",
+      "expected": "Servidor usa identidade do JWT",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 17.047199999999975,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        74,
+        75
+      ]
+    },
+    {
+      "id": "CT052",
+      "area": "Socket.IO",
+      "title": "Entrega em tempo real",
+      "requirement": "Socket.IO",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Conectar B e C e enviar mensagem A→B por HTTP autenticado",
+      "expected": "Evento recebido por B e persistido",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 291.3181999999997,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        75,
+        76
+      ]
+    },
+    {
+      "id": "CT053",
+      "area": "Socket.IO",
+      "title": "Isolamento entre salas legítimas",
+      "requirement": "Socket.IO",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Conectar C com sua identidade; monitorar evento por 400ms",
+      "expected": "C não recebe mensagem A→B",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 415.5426000000007,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        76,
+        77
+      ]
+    },
+    {
+      "id": "CT054",
+      "area": "Socket.IO",
+      "title": "Conexão sem identidade",
+      "requirement": "Socket.IO",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Conectar sem auth e observar estado após 300ms",
+      "expected": "Servidor desconecta sessão sem userId",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 5.532400000000052,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        77,
+        77
+      ]
+    },
+    {
+      "id": "CT055",
+      "area": "Socket.IO",
+      "title": "Assumir identidade sem JWT",
+      "requirement": "Socket.IO",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Conectar apenas com userId de B e enviar A→B",
+      "expected": "Conexão com userId da vítima deve ser rejeitada e não receber evento",
+      "obtained": "Handshake rejeitado sem token",
+      "status": "aprovado",
+      "durationMs": 5.539600000000064,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        77,
+        77
+      ]
+    },
+    {
+      "id": "CT056",
+      "area": "Socket.IO",
+      "title": "JWT inválido com userId válido",
+      "requirement": "Socket.IO",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Conectar com userId B e token inválido",
+      "expected": "Não entrar na sala privada",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 3.8710000000000946,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        77,
+        77
+      ]
+    },
+    {
+      "id": "CT057",
+      "area": "Socket.IO",
+      "title": "Reconexão e histórico",
+      "requirement": "Socket.IO",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Desconectar B, enviar offline, reconectar B e enviar online",
+      "expected": "Reconexão recebe novos eventos; histórico inclui mensagem offline",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 165.60220000000027,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        77,
+        80
+      ]
+    },
+    {
+      "id": "CT058",
+      "area": "Desempenho",
+      "title": "100 entregas reais de mensagens",
+      "requirement": "Desempenho",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Enviar sequencialmente 100 POSTs e medir performance.now de antes do HTTP até evento no cliente B no mesmo processo",
+      "expected": "100 eventos correlacionados recebidos; métricas gravadas",
+      "obtained": "{\"sent\":100,\"received\":100,\"failures\":0,\"minMs\":8.560099999999693,\"maxMs\":17.820999999999913,\"meanMs\":12.231079999999993,\"medianMs\":11.887600000000475,\"p95Ms\":15.862499999999272,\"method\":\"HTTP POST iniciado → evento new_message recebido; mesmo processo/relógio monotônico; serial; loopback; inclui HTTP, persistência PostgreSQL e Socket.IO; sem aquecimento excluído\",\"timestamp\":\"2026-11-18T06:12:38.262Z\"}",
+      "status": "aprovado",
+      "durationMs": 1443.3062,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        80,
+        180
+      ]
+    },
+    {
+      "id": "CT059",
+      "area": "Notificações",
+      "title": "Recebimento interno",
+      "requirement": "Notificações",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "GET /notifications/user do prestador",
+      "expected": "Listagem inclui solicitação criada",
+      "obtained": "{\"count\":5}",
+      "status": "aprovado",
+      "durationMs": 10.5583000000006,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        180,
+        181
+      ]
+    },
+    {
+      "id": "CT060",
+      "area": "Notificações",
+      "title": "Marcar como lida",
+      "requirement": "Notificações",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "PATCH /notifications/:id/read pelo titular",
+      "expected": "read=true no banco",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 18.18489999999838,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        181,
+        182
+      ]
+    },
+    {
+      "id": "CT061",
+      "area": "Notificações",
+      "title": "IDOR leitura de terceiro",
+      "requirement": "Notificações",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Criar notificação fictícia para A e marcar com C",
+      "expected": "HTTP 403 e read preservado",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 14.251099999999497,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        182,
+        183
+      ]
+    },
+    {
+      "id": "CT062",
+      "area": "Notificações",
+      "title": "Exclusão por terceiro",
+      "requirement": "Notificações",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "DELETE notificação de A pela sessão C",
+      "expected": "HTTP 403",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 10.859699999999066,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        183,
+        184
+      ]
+    },
+    {
+      "id": "CT063",
+      "area": "Notificações",
+      "title": "Contagem e marcar todas",
+      "requirement": "Notificações",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "PATCH /notifications/read/all; conferir banco",
+      "expected": "Sem notificações não lidas do usuário",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 13.509899999999107,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        184,
+        185
+      ]
+    },
+    {
+      "id": "CT064",
+      "area": "Notificações",
+      "title": "Criação e evento",
+      "requirement": "Notificações",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Conectar A; POST notificação fictícia para A",
+      "expected": "HTTP 201 e evento new_notification real",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 144.4860000000008,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        185,
+        186
+      ]
+    },
+    {
+      "id": "CT065",
+      "area": "Painel",
+      "title": "Consistência dos indicadores",
+      "requirement": "Painel",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "GET /dashboard/stats comparado com SELECTs no banco isolado",
+      "expected": "Valores coincidem com agregações SQL independentes",
+      "obtained": "{\"api\":{\"publishedAdvertisements\":2,\"activeServiceRequests\":0,\"unreadMessages\":0,\"rating\":5,\"monthlyEarnings\":30,\"monthlySpent\":0,\"contracts\":1},\"sql\":{\"ads\":2,\"active\":0,\"unread\":0,\"rating\":5,\"total\":30}}",
+      "status": "aprovado",
+      "durationMs": 29.545600000001286,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        186,
+        187
+      ]
+    },
+    {
+      "id": "CT066",
+      "area": "Segurança",
+      "title": "SQL Injection em busca/login",
+      "requirement": "Segurança",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "GET busca e POST login com aspas e payload SQL",
+      "expected": "Sem bypass; banco íntegro",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 411.8165000000008,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        187,
+        189
+      ]
+    },
+    {
+      "id": "CT067",
+      "area": "Segurança",
+      "title": "Ausência de hash em mensagens/perfil",
+      "requirement": "Segurança",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Consultar thread e seller",
+      "expected": "Nenhuma resposta pública testada contém password_hash",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 35.80240000000049,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        189,
+        191
+      ]
+    },
+    {
+      "id": "CT068",
+      "area": "Segurança",
+      "title": "Mass assignment de role",
+      "requirement": "Segurança",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "PUT /me com role ADMIN e password_hash injetados",
+      "expected": "Role permanece MEMBER",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 15.561600000000908,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        191,
+        192
+      ]
+    },
+    {
+      "id": "CT069",
+      "area": "Banco",
+      "title": "Unicidade do e-mail",
+      "requirement": "Banco",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "INSERT direto em transação controlada com e-mail já existente",
+      "expected": "SQLSTATE 23505; sem duplicação",
+      "obtained": "SQLSTATE 23505",
+      "status": "aprovado",
+      "durationMs": 2.878899999999703,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        192,
+        192
+      ]
+    },
+    {
+      "id": "CT070",
+      "area": "Banco",
+      "title": "Integridade referencial",
+      "requirement": "Banco",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "INSERT direto com FK inválida",
+      "expected": "SQLSTATE 23503 para anúncio com autor inexistente",
+      "obtained": "SQLSTATE 23503",
+      "status": "aprovado",
+      "durationMs": 26.446399999998903,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        192,
+        192
+      ]
+    },
+    {
+      "id": "CT071",
+      "area": "Banco",
+      "title": "Campo obrigatório nulo",
+      "requirement": "Banco",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "INSERT users com nome NULL",
+      "expected": "SQLSTATE 23502",
+      "obtained": "SQLSTATE 23502",
+      "status": "aprovado",
+      "durationMs": 18.396100000001752,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        192,
+        192
+      ]
+    },
+    {
+      "id": "CT072",
+      "area": "Banco",
+      "title": "Persistência em conexão nova",
+      "requirement": "Banco",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Abrir cliente novo e consultar entidades criadas",
+      "expected": "Mensagem e anúncio recuperados por outro cliente PostgreSQL",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 20.654599999999846,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        192,
+        192
+      ]
+    },
+    {
+      "id": "CT073",
+      "area": "Banco",
+      "title": "Unicidade de avaliação",
+      "requirement": "Banco",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "INSERT review duplicado pelo par já avaliado",
+      "expected": "SQLSTATE 23505 para par reviewer/anúncio",
+      "obtained": "SQLSTATE 23505",
+      "status": "aprovado",
+      "durationMs": 16.64849999999933,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        192,
+        192
+      ]
+    },
+    {
+      "id": "CT074",
+      "area": "Banco",
+      "title": "Restrições de domínio na camada SQL",
+      "requirement": "Banco",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Inserir avaliação inválida em transação e sempre ROLLBACK",
+      "expected": "Banco deve rejeitar rating=8 se regra também existir no schema",
+      "obtained": "CHECK rejeitou",
+      "status": "aprovado",
+      "durationMs": 20.699899999999616,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        192,
+        192
+      ]
+    },
+    {
+      "id": "CT075",
+      "area": "Segurança",
+      "title": "Hash exposto na resposta de upload",
+      "requirement": "Segurança",
+      "preconditions": "Banco PostgreSQL exclusivo; backend real na porta 4433; contas fictícias do mesmo lote.",
+      "procedure": "Enviar PNG e inspecionar somente os nomes dos campos retornados",
+      "expected": "Resposta de avatar não deve incluir hash da senha",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 21.180700000000797,
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json",
+      "traceRange": [
+        192,
+        193
+      ]
+    },
+    {
+      "id": "CT076",
+      "area": "Interface/autenticação",
+      "title": "Cadastro inválido pelo formulário",
+      "requirement": "Interface/autenticação",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Preencher cadastro com domínio externo e enviar",
+      "expected": "Erros de domínio e sem criação da conta",
+      "obtained": "evidencias/capturas/CT076-cadastro-dominio.png",
+      "status": "aprovado",
+      "durationMs": 6258.580599999999,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT077",
+      "area": "Interface/autenticação",
+      "title": "Login correto no navegador",
+      "requirement": "Interface/autenticação",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Digitar credenciais fictícias e submeter formulário real",
+      "expected": "Redireciona ao painel e mantém sessão ao recarregar",
+      "obtained": "evidencias/capturas/CT077-login-painel.png",
+      "status": "aprovado",
+      "durationMs": 3956.4222999999984,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT078",
+      "area": "Interface/chat",
+      "title": "Histórico após recarregar",
+      "requirement": "Interface/chat",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Abrir conversa B↔A e recarregar",
+      "expected": "Mensagens enviadas via API aparecem após reload",
+      "obtained": "evidencias/capturas/CT078-historico-chat.png",
+      "status": "aprovado",
+      "durationMs": 1158.6975999999995,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT079",
+      "area": "Interface/chat",
+      "title": "Envio pela interface",
+      "requirement": "Interface/chat",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Preencher campo de chat e pressionar Enter",
+      "expected": "Mensagem de UI aparece e persiste após reload",
+      "obtained": "evidencias/capturas/CT079-envio-chat.png",
+      "status": "aprovado",
+      "durationMs": 983.1457999999984,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT080",
+      "area": "Interface/autenticação",
+      "requirement": "Logout e invalidação da própria sessão",
+      "title": "Logout no navegador",
+      "expected": "Após conclusão do logout: armazenamento limpo, painel protegido e JWT da sessão rejeitado",
+      "procedure": "Login real, clicar Sair, aguardar conclusão assíncrona, tentar /dashboard e reutilizar somente o JWT dessa sessão por HTTP.",
+      "preconditions": "Conta fictícia confirmada; instâncias corrigidas isoladas.",
+      "status": "aprovado",
+      "obtained": "Armazenamento limpo; /dashboard redirecionou a /login; JWT encerrado recebeu HTTP 401.",
+      "evidence": "evidencias/capturas/CT080-logout-reteste.png; evidencias/ui-reteste-CT080.json",
+      "note": "O primeiro seletor verificava localStorage antes da conclusão do POST de logout. Reteste aguardou a conclusão real; token omitido."
+    },
+    {
+      "id": "CT081",
+      "area": "Interface/segurança",
+      "title": "XSS armazenado em título",
+      "requirement": "Interface/segurança",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Abrir anúncio cujo título contém img/onerror e verificar marcador JavaScript",
+      "expected": "Payload exibido como texto; sem execução",
+      "obtained": "evidencias/capturas/CT081-xss-texto.png",
+      "status": "aprovado",
+      "durationMs": 698.8086999999978,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT082",
+      "area": "Chatbot",
+      "title": "Abrir ajuda",
+      "requirement": "Chatbot",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Clicar em Abrir ajuda",
+      "expected": "Painel de perguntas visível",
+      "obtained": "evidencias/capturas/CT082-chatbot-aberto.png",
+      "status": "aprovado",
+      "durationMs": 1810.2098000000005,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT083",
+      "area": "Chatbot",
+      "title": "Pergunta: Como solicitar um serviço?",
+      "requirement": "Chatbot",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Selecionar pergunta e usar Ver outras dúvidas",
+      "expected": "Resposta correspondente exibida; retorno às perguntas funciona",
+      "obtained": "evidencias/capturas/CT083-chatbot-resposta.png",
+      "status": "aprovado",
+      "durationMs": 744.6944000000003,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT084",
+      "area": "Chatbot",
+      "title": "Pergunta: Como criar um anúncio?",
+      "requirement": "Chatbot",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Selecionar pergunta e usar Ver outras dúvidas",
+      "expected": "Resposta correspondente exibida; retorno às perguntas funciona",
+      "obtained": "evidencias/capturas/CT084-chatbot-resposta.png",
+      "status": "aprovado",
+      "durationMs": 654.7210999999988,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT085",
+      "area": "Chatbot",
+      "title": "Pergunta: Como funciona o sistema de mensagens?",
+      "requirement": "Chatbot",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Selecionar pergunta e usar Ver outras dúvidas",
+      "expected": "Resposta correspondente exibida; retorno às perguntas funciona",
+      "obtained": "evidencias/capturas/CT085-chatbot-resposta.png",
+      "status": "aprovado",
+      "durationMs": 657.8086000000003,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT086",
+      "area": "Chatbot",
+      "title": "Pergunta: Como avaliar um serviço?",
+      "requirement": "Chatbot",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Selecionar pergunta e usar Ver outras dúvidas",
+      "expected": "Resposta correspondente exibida; retorno às perguntas funciona",
+      "obtained": "evidencias/capturas/CT086-chatbot-resposta.png",
+      "status": "aprovado",
+      "durationMs": 708.2135000000017,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT087",
+      "area": "Chatbot",
+      "title": "Pergunta: Quem pode se cadastrar?",
+      "requirement": "Chatbot",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Selecionar pergunta e usar Ver outras dúvidas",
+      "expected": "Resposta correspondente exibida; retorno às perguntas funciona",
+      "obtained": "evidencias/capturas/CT087-chatbot-resposta.png",
+      "status": "aprovado",
+      "durationMs": 739.1815999999999,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT088",
+      "area": "Chatbot",
+      "title": "Pergunta: Como combinar as condições do serviço?",
+      "requirement": "Chatbot",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Selecionar pergunta e usar Ver outras dúvidas",
+      "expected": "Resposta correspondente exibida; retorno às perguntas funciona",
+      "obtained": "evidencias/capturas/CT088-chatbot-resposta.png",
+      "status": "aprovado",
+      "durationMs": 701.3675999999978,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT089",
+      "area": "Chatbot",
+      "title": "Fechar ajuda",
+      "requirement": "Chatbot",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Clicar Fechar",
+      "expected": "Botão flutuante retorna",
+      "obtained": "\"Asserções satisfeitas\"",
+      "status": "aprovado",
+      "durationMs": 83.58890000000247,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT090",
+      "area": "Temas",
+      "title": "Persistência do tema claro",
+      "requirement": "Temas",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Alternar tema usando botão e recarregar",
+      "expected": "Classe light e fundo claro após reload",
+      "obtained": "evidencias/capturas/CT090-tema-claro.png",
+      "status": "aprovado",
+      "durationMs": 1240.1345999999976,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT091",
+      "area": "Temas",
+      "title": "Chatbot no tema claro",
+      "requirement": "Temas",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Abrir chatbot e medir cores computadas",
+      "expected": "Fundo e texto com contraste; sem fundo escuro fixo",
+      "obtained": "{\"text\":\"rgb(20, 28, 46)\",\"header\":\"rgb(255, 255, 255)\"}",
+      "status": "aprovado",
+      "durationMs": 915.4808999999987,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT092",
+      "area": "Responsividade",
+      "title": "inicio 360x800 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":360,\"scrollWidth\":360,\"bodyWidth\":360,\"theme\":\"light\",\"heading\":\"Encontre e ofereça serviços na comunidade acadêmica.\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT092-inicio-360-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 3119.743500000004,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT093",
+      "area": "Responsividade",
+      "title": "cadastro 360x800 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":360,\"scrollWidth\":360,\"bodyWidth\":360,\"theme\":\"light\",\"heading\":\"Criar conta\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT093-cadastro-360-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 1802.9609999999957,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT094",
+      "area": "Responsividade",
+      "title": "login 360x800 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":360,\"scrollWidth\":360,\"bodyWidth\":360,\"theme\":\"light\",\"heading\":\"Entrar na sua conta\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT094-login-360-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 1747.354299999999,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT095",
+      "area": "Responsividade",
+      "title": "explorar 360x800 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":360,\"scrollWidth\":360,\"bodyWidth\":360,\"theme\":\"light\",\"heading\":\"Explorar serviços\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT095-explorar-360-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 2499.2810000000027,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT096",
+      "area": "Responsividade",
+      "title": "prestador 360x800 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":360,\"scrollWidth\":360,\"bodyWidth\":360,\"theme\":\"light\",\"heading\":\"Prestador fictício atualizado\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT096-prestador-360-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 2079.5338000000047,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT097",
+      "area": "Responsividade",
+      "title": "chat 360x800 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":360,\"scrollWidth\":360,\"bodyWidth\":360,\"theme\":\"light\",\"heading\":\"Participantes e mensagens\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT097-chat-360-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 2125.6217000000033,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT098",
+      "area": "Responsividade",
+      "title": "painel 360x800 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":360,\"scrollWidth\":360,\"bodyWidth\":360,\"theme\":\"light\",\"heading\":\"Prestador fictício atualizado\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT098-painel-360-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 2301.4999000000025,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT099",
+      "area": "Responsividade",
+      "title": "solicitacoes 360x800 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":360,\"scrollWidth\":360,\"bodyWidth\":360,\"theme\":\"light\",\"heading\":\"Minhas solicitações\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT099-solicitacoes-360-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 2018.4552999999942,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT100",
+      "area": "Responsividade",
+      "title": "inicio 360x800 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":360,\"scrollWidth\":360,\"bodyWidth\":360,\"theme\":\"dark\",\"heading\":\"Encontre e ofereça serviços na comunidade acadêmica.\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT100-inicio-360-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 3094.5053000000044,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT101",
+      "area": "Responsividade",
+      "title": "cadastro 360x800 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":360,\"scrollWidth\":360,\"bodyWidth\":360,\"theme\":\"dark\",\"heading\":\"Criar conta\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT101-cadastro-360-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 2000.179999999993,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT102",
+      "area": "Responsividade",
+      "title": "login 360x800 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":360,\"scrollWidth\":360,\"bodyWidth\":360,\"theme\":\"dark\",\"heading\":\"Entrar na sua conta\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT102-login-360-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 1997.1699000000008,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT103",
+      "area": "Responsividade",
+      "title": "explorar 360x800 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":360,\"scrollWidth\":360,\"bodyWidth\":360,\"theme\":\"dark\",\"heading\":\"Explorar serviços\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT103-explorar-360-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 2649.613400000002,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT104",
+      "area": "Responsividade",
+      "title": "prestador 360x800 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":360,\"scrollWidth\":360,\"bodyWidth\":360,\"theme\":\"dark\",\"heading\":\"Prestador fictício atualizado\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT104-prestador-360-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 2006.0674999999974,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT105",
+      "area": "Responsividade",
+      "title": "chat 360x800 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":360,\"scrollWidth\":360,\"bodyWidth\":360,\"theme\":\"dark\",\"heading\":\"Participantes e mensagens\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT105-chat-360-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 2099.648500000003,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT106",
+      "area": "Responsividade",
+      "title": "painel 360x800 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":360,\"scrollWidth\":360,\"bodyWidth\":360,\"theme\":\"dark\",\"heading\":\"Prestador fictício atualizado\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT106-painel-360-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 2209.9861999999994,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT107",
+      "area": "Responsividade",
+      "title": "solicitacoes 360x800 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":360,\"scrollWidth\":360,\"bodyWidth\":360,\"theme\":\"dark\",\"heading\":\"Minhas solicitações\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT107-solicitacoes-360-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 1939.963800000005,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT108",
+      "area": "Responsividade",
+      "title": "inicio 390x844 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":390,\"scrollWidth\":390,\"bodyWidth\":390,\"theme\":\"light\",\"heading\":\"Encontre e ofereça serviços na comunidade acadêmica.\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT108-inicio-390-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 3060.14439999999,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT109",
+      "area": "Responsividade",
+      "title": "cadastro 390x844 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":390,\"scrollWidth\":390,\"bodyWidth\":390,\"theme\":\"light\",\"heading\":\"Criar conta\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT109-cadastro-390-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 1791.5734999999986,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT110",
+      "area": "Responsividade",
+      "title": "login 390x844 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":390,\"scrollWidth\":390,\"bodyWidth\":390,\"theme\":\"light\",\"heading\":\"Entrar na sua conta\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT110-login-390-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 1729.2632000000012,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT111",
+      "area": "Responsividade",
+      "title": "explorar 390x844 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":390,\"scrollWidth\":390,\"bodyWidth\":390,\"theme\":\"light\",\"heading\":\"Explorar serviços\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT111-explorar-390-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 2532.7683000000106,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT112",
+      "area": "Responsividade",
+      "title": "prestador 390x844 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":390,\"scrollWidth\":390,\"bodyWidth\":390,\"theme\":\"light\",\"heading\":\"Prestador fictício atualizado\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT112-prestador-390-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 1979.1350999999995,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT113",
+      "area": "Responsividade",
+      "title": "chat 390x844 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":390,\"scrollWidth\":390,\"bodyWidth\":390,\"theme\":\"light\",\"heading\":\"Participantes e mensagens\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT113-chat-390-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 2032.3329000000085,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT114",
+      "area": "Responsividade",
+      "title": "painel 390x844 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":390,\"scrollWidth\":390,\"bodyWidth\":390,\"theme\":\"light\",\"heading\":\"Prestador fictício atualizado\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT114-painel-390-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 2300.069499999998,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT115",
+      "area": "Responsividade",
+      "title": "solicitacoes 390x844 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":390,\"scrollWidth\":390,\"bodyWidth\":390,\"theme\":\"light\",\"heading\":\"Minhas solicitações\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT115-solicitacoes-390-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 2130.2690999999904,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT116",
+      "area": "Responsividade",
+      "title": "inicio 390x844 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":390,\"scrollWidth\":390,\"bodyWidth\":390,\"theme\":\"dark\",\"heading\":\"Encontre e ofereça serviços na comunidade acadêmica.\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT116-inicio-390-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 3064.6796999999933,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT117",
+      "area": "Responsividade",
+      "title": "cadastro 390x844 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":390,\"scrollWidth\":390,\"bodyWidth\":390,\"theme\":\"dark\",\"heading\":\"Criar conta\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT117-cadastro-390-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 1825.8062999999966,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT118",
+      "area": "Responsividade",
+      "title": "login 390x844 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":390,\"scrollWidth\":390,\"bodyWidth\":390,\"theme\":\"dark\",\"heading\":\"Entrar na sua conta\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT118-login-390-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 1769.3843999999954,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT119",
+      "area": "Responsividade",
+      "title": "explorar 390x844 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":390,\"scrollWidth\":390,\"bodyWidth\":390,\"theme\":\"dark\",\"heading\":\"Explorar serviços\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT119-explorar-390-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 3245.230800000005,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT120",
+      "area": "Responsividade",
+      "title": "prestador 390x844 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":390,\"scrollWidth\":390,\"bodyWidth\":390,\"theme\":\"dark\",\"heading\":\"Prestador fictício atualizado\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT120-prestador-390-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 1914.5967000000092,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT121",
+      "area": "Responsividade",
+      "title": "chat 390x844 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":390,\"scrollWidth\":390,\"bodyWidth\":390,\"theme\":\"dark\",\"heading\":\"Participantes e mensagens\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT121-chat-390-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 1947.3905999999988,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT122",
+      "area": "Responsividade",
+      "title": "painel 390x844 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":390,\"scrollWidth\":390,\"bodyWidth\":390,\"theme\":\"dark\",\"heading\":\"Prestador fictício atualizado\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT122-painel-390-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 2172.9416000000056,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT123",
+      "area": "Responsividade",
+      "title": "solicitacoes 390x844 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":390,\"scrollWidth\":390,\"bodyWidth\":390,\"theme\":\"dark\",\"heading\":\"Minhas solicitações\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT123-solicitacoes-390-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 1993.8273000000045,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT124",
+      "area": "Responsividade",
+      "title": "inicio 768x1024 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":768,\"scrollWidth\":768,\"bodyWidth\":768,\"theme\":\"light\",\"heading\":\"Encontre e ofereça serviços na comunidade acadêmica.\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT124-inicio-768-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 3658.4400000000023,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT125",
+      "area": "Responsividade",
+      "title": "cadastro 768x1024 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":768,\"scrollWidth\":768,\"bodyWidth\":768,\"theme\":\"light\",\"heading\":\"Criar conta\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT125-cadastro-768-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 1801.8235999999888,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT126",
+      "area": "Responsividade",
+      "title": "login 768x1024 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":768,\"scrollWidth\":768,\"bodyWidth\":768,\"theme\":\"light\",\"heading\":\"Entrar na sua conta\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT126-login-768-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 1953.8659000000043,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT127",
+      "area": "Responsividade",
+      "title": "explorar 768x1024 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":768,\"scrollWidth\":768,\"bodyWidth\":768,\"theme\":\"light\",\"heading\":\"Explorar serviços\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT127-explorar-768-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 2621.925700000007,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT128",
+      "area": "Responsividade",
+      "title": "prestador 768x1024 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":768,\"scrollWidth\":768,\"bodyWidth\":768,\"theme\":\"light\",\"heading\":\"Prestador fictício atualizado\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT128-prestador-768-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 2012.0093999999954,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT129",
+      "area": "Responsividade",
+      "title": "chat 768x1024 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":768,\"scrollWidth\":768,\"bodyWidth\":768,\"theme\":\"light\",\"heading\":\"Participantes e mensagens\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT129-chat-768-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 2085.90909999999,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT130",
+      "area": "Responsividade",
+      "title": "painel 768x1024 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":768,\"scrollWidth\":768,\"bodyWidth\":768,\"theme\":\"light\",\"heading\":\"Prestador fictício atualizado\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT130-painel-768-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 2237.793300000005,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT131",
+      "area": "Responsividade",
+      "title": "solicitacoes 768x1024 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":768,\"scrollWidth\":768,\"bodyWidth\":768,\"theme\":\"light\",\"heading\":\"Minhas solicitações\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT131-solicitacoes-768-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 2011.3390000000072,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT132",
+      "area": "Responsividade",
+      "title": "inicio 768x1024 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":768,\"scrollWidth\":768,\"bodyWidth\":768,\"theme\":\"dark\",\"heading\":\"Encontre e ofereça serviços na comunidade acadêmica.\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT132-inicio-768-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 3162.3508,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT133",
+      "area": "Responsividade",
+      "title": "cadastro 768x1024 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":768,\"scrollWidth\":768,\"bodyWidth\":768,\"theme\":\"dark\",\"heading\":\"Criar conta\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT133-cadastro-768-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 1840.5727999999945,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT134",
+      "area": "Responsividade",
+      "title": "login 768x1024 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":768,\"scrollWidth\":768,\"bodyWidth\":768,\"theme\":\"dark\",\"heading\":\"Entrar na sua conta\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT134-login-768-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 1797.8699999999953,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT135",
+      "area": "Responsividade",
+      "title": "explorar 768x1024 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":768,\"scrollWidth\":768,\"bodyWidth\":768,\"theme\":\"dark\",\"heading\":\"Explorar serviços\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT135-explorar-768-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 2476.337400000004,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT136",
+      "area": "Responsividade",
+      "title": "prestador 768x1024 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":768,\"scrollWidth\":768,\"bodyWidth\":768,\"theme\":\"dark\",\"heading\":\"Prestador fictício atualizado\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT136-prestador-768-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 2021.87999999999,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT137",
+      "area": "Responsividade",
+      "title": "chat 768x1024 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":768,\"scrollWidth\":768,\"bodyWidth\":768,\"theme\":\"dark\",\"heading\":\"Participantes e mensagens\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT137-chat-768-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 2131.2967000000062,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT138",
+      "area": "Responsividade",
+      "title": "painel 768x1024 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":768,\"scrollWidth\":768,\"bodyWidth\":768,\"theme\":\"dark\",\"heading\":\"Prestador fictício atualizado\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT138-painel-768-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 2265.153099999996,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT139",
+      "area": "Responsividade",
+      "title": "solicitacoes 768x1024 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":768,\"scrollWidth\":768,\"bodyWidth\":768,\"theme\":\"dark\",\"heading\":\"Minhas solicitações\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT139-solicitacoes-768-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 2013.6068000000087,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT140",
+      "area": "Responsividade",
+      "title": "inicio 1920x1080 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":1920,\"scrollWidth\":1920,\"bodyWidth\":1920,\"theme\":\"light\",\"heading\":\"Encontre e ofereça serviços na comunidade acadêmica.\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT140-inicio-1920-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 3556.416900000011,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT141",
+      "area": "Responsividade",
+      "title": "cadastro 1920x1080 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":1920,\"scrollWidth\":1920,\"bodyWidth\":1920,\"theme\":\"light\",\"heading\":\"Criar conta\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT141-cadastro-1920-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 1827.053500000009,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT142",
+      "area": "Responsividade",
+      "title": "login 1920x1080 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":1920,\"scrollWidth\":1920,\"bodyWidth\":1920,\"theme\":\"light\",\"heading\":\"Entrar na sua conta\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT142-login-1920-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 1825.2859999999928,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT143",
+      "area": "Responsividade",
+      "title": "explorar 1920x1080 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":1920,\"scrollWidth\":1920,\"bodyWidth\":1920,\"theme\":\"light\",\"heading\":\"Explorar serviços\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT143-explorar-1920-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 2462.416899999982,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT144",
+      "area": "Responsividade",
+      "title": "prestador 1920x1080 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":1920,\"scrollWidth\":1920,\"bodyWidth\":1920,\"theme\":\"light\",\"heading\":\"Prestador fictício atualizado\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT144-prestador-1920-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 2122.9207999999926,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT145",
+      "area": "Responsividade",
+      "title": "chat 1920x1080 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":1920,\"scrollWidth\":1920,\"bodyWidth\":1920,\"theme\":\"light\",\"heading\":\"Participantes e mensagens\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT145-chat-1920-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 2164.9098999999987,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT146",
+      "area": "Responsividade",
+      "title": "painel 1920x1080 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":1920,\"scrollWidth\":1920,\"bodyWidth\":1920,\"theme\":\"light\",\"heading\":\"Prestador fictício atualizado\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT146-painel-1920-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 2516.1578000000154,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT147",
+      "area": "Responsividade",
+      "title": "solicitacoes 1920x1080 light",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":1920,\"scrollWidth\":1920,\"bodyWidth\":1920,\"theme\":\"light\",\"heading\":\"Minhas solicitações\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT147-solicitacoes-1920-light.png\"}",
+      "status": "aprovado",
+      "durationMs": 2838.305299999978,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT148",
+      "area": "Responsividade",
+      "title": "inicio 1920x1080 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":1920,\"scrollWidth\":1920,\"bodyWidth\":1920,\"theme\":\"dark\",\"heading\":\"Encontre e ofereça serviços na comunidade acadêmica.\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT148-inicio-1920-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 4189.301599999977,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT149",
+      "area": "Responsividade",
+      "title": "cadastro 1920x1080 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":1920,\"scrollWidth\":1920,\"bodyWidth\":1920,\"theme\":\"dark\",\"heading\":\"Criar conta\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT149-cadastro-1920-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 2329.9951,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT150",
+      "area": "Responsividade",
+      "title": "login 1920x1080 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":1920,\"scrollWidth\":1920,\"bodyWidth\":1920,\"theme\":\"dark\",\"heading\":\"Entrar na sua conta\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT150-login-1920-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 2352.953999999998,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT151",
+      "area": "Responsividade",
+      "title": "explorar 1920x1080 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":1920,\"scrollWidth\":1920,\"bodyWidth\":1920,\"theme\":\"dark\",\"heading\":\"Explorar serviços\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT151-explorar-1920-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 3013.0187999999907,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT152",
+      "area": "Responsividade",
+      "title": "prestador 1920x1080 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":1920,\"scrollWidth\":1920,\"bodyWidth\":1920,\"theme\":\"dark\",\"heading\":\"Prestador fictício atualizado\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT152-prestador-1920-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 2854.0020999999833,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT153",
+      "area": "Responsividade",
+      "title": "chat 1920x1080 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":1920,\"scrollWidth\":1920,\"bodyWidth\":1920,\"theme\":\"dark\",\"heading\":\"Participantes e mensagens\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT153-chat-1920-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 3589.680800000002,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT154",
+      "area": "Responsividade",
+      "title": "painel 1920x1080 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":1920,\"scrollWidth\":1920,\"bodyWidth\":1920,\"theme\":\"dark\",\"heading\":\"Prestador fictício atualizado\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT154-painel-1920-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 2746.614500000025,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT155",
+      "area": "Responsividade",
+      "title": "solicitacoes 1920x1080 dark",
+      "requirement": "Responsividade",
+      "preconditions": "Chromium real headless; frontend/backend reais isolados; dados fictícios do lote API.",
+      "procedure": "Contexto com sessão fictícia pré-carregada (não é teste de login); abrir rota, aguardar renderização, medir layout e capturar PNG",
+      "expected": "Sem rolagem horizontal; conteúdo principal visível; rota carregada e tema correto",
+      "obtained": "{\"width\":1920,\"scrollWidth\":1920,\"bodyWidth\":1920,\"theme\":\"dark\",\"heading\":\"Minhas solicitações\",\"mainVisible\":true,\"overflow\":[],\"capture\":\"evidencias/capturas/CT155-solicitacoes-1920-dark.png\"}",
+      "status": "aprovado",
+      "durationMs": 2197.4646000000066,
+      "evidence": "evidencias/ui-resultados.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT156",
+      "area": "Complementares",
+      "requirement": "Segurança, banco e verificações de compilação",
+      "title": "TypeScript frontend",
+      "preconditions": "Ambiente isolado de testes; contas fictícias.",
+      "expected": "Processo termina com código 0",
+      "procedure": "Executar compilador local --noEmit com tsconfig original, na cópia",
+      "status": "aprovado",
+      "obtained": "exit=0",
+      "durationMs": 12536.120700000001,
+      "evidence": "evidencias/adicionais.json; evidencias/*.log"
+    },
+    {
+      "id": "CT157",
+      "area": "Complementares",
+      "requirement": "Segurança, banco e verificações de compilação",
+      "title": "Build frontend",
+      "preconditions": "Ambiente isolado de testes; contas fictícias.",
+      "expected": "Build de produção termina com código 0",
+      "procedure": "Executar vite build na cópia isolada",
+      "status": "aprovado",
+      "obtained": "exit=0; aviso de bundle grande registrado no log",
+      "durationMs": 14920.3896,
+      "evidence": "evidencias/adicionais.json; evidencias/*.log"
+    },
+    {
+      "id": "CT158",
+      "area": "Complementares",
+      "requirement": "Segurança, banco e verificações de compilação",
+      "title": "TypeScript backend",
+      "preconditions": "Ambiente isolado de testes; contas fictícias.",
+      "expected": "Processo termina com código 0",
+      "procedure": "Executar tsc --noEmit com tsconfig original no backend, sem emissão de arquivos",
+      "status": "aprovado",
+      "obtained": "exit=0",
+      "durationMs": 4012.3741999999984,
+      "evidence": "evidencias/adicionais.json; evidencias/*.log"
+    },
+    {
+      "id": "CT159",
+      "area": "Complementares",
+      "requirement": "Segurança, banco e verificações de compilação",
+      "title": "Build backend",
+      "preconditions": "Ambiente isolado de testes; contas fictícias.",
+      "expected": "Script npm run build termina com código 0",
+      "procedure": "Executar script de build definido no package.json, apenas na cópia isolada usando NODE_PATH",
+      "status": "aprovado",
+      "obtained": "exit=0",
+      "durationMs": 8099.376500000002,
+      "evidence": "evidencias/adicionais.json; evidencias/*.log"
+    },
+    {
+      "id": "CT160",
+      "area": "Complementares",
+      "requirement": "Segurança, banco e verificações de compilação",
+      "title": "Upload SVG com conteúdo ativo",
+      "preconditions": "Ambiente isolado de testes; contas fictícias.",
+      "expected": "Arquivo ativo rejeitado ou servido de modo que script não execute",
+      "procedure": "Enviar SVG como avatar de conta fictícia; navegar apenas no arquivo local isolado e verificar marcador JavaScript",
+      "status": "aprovado",
+      "obtained": "{\"rejected\":true,\"status\":400}",
+      "durationMs": 54.01499999999942,
+      "evidence": "evidencias/adicionais.json; evidencias/*.log"
+    },
+    {
+      "id": "CT161",
+      "area": "Complementares",
+      "requirement": "Segurança, banco e verificações de compilação",
+      "title": "JWT anterior ao logout",
+      "preconditions": "Ambiente isolado de testes; contas fictícias.",
+      "expected": "Token anterior deveria ser invalidado quando houver revogação de sessão",
+      "procedure": "Criar sessão real por login; encerrar essa mesma sessão com POST /sessions/logout; reutilizar o mesmo JWT em GET /me",
+      "status": "aprovado",
+      "obtained": "Sessão encerrada: HTTP 401; outras sessões independentes permanecem válidas",
+      "durationMs": 364.46979999999894,
+      "evidence": "evidencias/adicionais.json; evidencias/*.log"
+    },
+    {
+      "id": "CT162",
+      "area": "Complementares",
+      "requirement": "Segurança, banco e verificações de compilação",
+      "title": "Persistência dos totais após operações",
+      "preconditions": "Ambiente isolado de testes; contas fictícias.",
+      "expected": "Mesmos totais em duas conexões independentes; relações existentes",
+      "procedure": "Contar tabelas em duas conexões PostgreSQL novas",
+      "status": "aprovado",
+      "obtained": "{\"users\":6,\"advertisements\":3,\"requests\":4,\"reviews\":1,\"messages\":108}",
+      "durationMs": 157.40409999999974,
+      "evidence": "evidencias/adicionais.json; evidencias/*.log"
+    },
+    {
+      "id": "CT163",
+      "area": "Complementares",
+      "requirement": "Segurança, banco e verificações de compilação",
+      "title": "Exclusão em cascata no banco",
+      "preconditions": "Ambiente isolado de testes; contas fictícias.",
+      "expected": "Filhos de anúncio descartável removidos sem órfãos",
+      "procedure": "Criar anúncio, solicitação, order e review em transação; excluir anúncio; verificar filhos; ROLLBACK final",
+      "status": "aprovado",
+      "obtained": "Solicitação, order e review removidos; transação revertida ao final",
+      "durationMs": 28.219599999996717,
+      "evidence": "evidencias/adicionais.json; evidencias/*.log"
+    },
+    {
+      "id": "CT164",
+      "area": "Segurança e Socket.IO",
+      "title": "Reconexão automática após queda de transporte",
+      "requirement": "Isolamento e autorização; recuperação após interrupção",
+      "preconditions": "Instâncias e contas fictícias exclusivas; mensagens sem dados pessoais.",
+      "expected": "Cliente se reconecta automaticamente e recebe nova mensagem",
+      "procedure": "Conectar com reconnection=true; fechar Engine.IO para simular queda do transporte; aguardar connect sem chamar connect manualmente; enviar mensagem",
+      "status": "aprovado",
+      "obtained": "Reconexão automática e entrega confirmadas; queda simulada no cliente, não desligamento de rede física",
+      "durationMs": 426.98990000000003,
+      "evidence": "evidencias/socket-seguranca-eventos.json; evidencias/socket-seguranca.json"
+    },
+    {
+      "id": "CT165",
+      "area": "Segurança e Socket.IO",
+      "title": "Sessão C não pode entrar na sala de B",
+      "requirement": "Isolamento e autorização; recuperação após interrupção",
+      "preconditions": "Instâncias e contas fictícias exclusivas; mensagens sem dados pessoais.",
+      "expected": "JWT de C não autoriza sala B",
+      "procedure": "Conectar auth.userId=B e token=C; enviar A→B e observar vazamento",
+      "status": "aprovado",
+      "obtained": "JWT C não ingressa na sala B",
+      "durationMs": 8.858300000000327,
+      "evidence": "evidencias/socket-seguranca-eventos.json; evidencias/socket-seguranca.json"
+    },
+    {
+      "id": "CT166",
+      "area": "Segurança e Socket.IO",
+      "title": "Listagem pública não expõe hashes",
+      "requirement": "Isolamento e autorização; recuperação após interrupção",
+      "preconditions": "Instâncias e contas fictícias exclusivas; mensagens sem dados pessoais.",
+      "expected": "GET /sellers sem token deve omitir password_hash",
+      "procedure": "Consultar lista pública; registrar apenas nomes dos campos e quantidade, sem valores de hashes",
+      "status": "aprovado",
+      "durationMs": 12.173200000000179,
+      "evidence": "evidencias/socket-seguranca-eventos.json; evidencias/socket-seguranca.json"
+    },
+    {
+      "id": "CT167",
+      "area": "Confirmação institucional e sessões",
+      "title": "Cadastro real no navegador exige confirmação",
+      "expected": "Sem sessão automática; página de confirmação; e-mail na caixa local",
+      "procedure": "Preencher formulário institucional válido e enviar; observar navegação e localStorage",
+      "status": "aprovado",
+      "preconditions": "Instâncias e banco de correção isolados; caixa de saída local autorizada.",
+      "obtained": "Conta não recebe token de sessão antes de confirmar; link só na caixa de saída local.",
+      "durationMs": 3792.7834000000003,
+      "evidence": "evidencias/verificacao-email.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT168",
+      "area": "Confirmação institucional e sessões",
+      "title": "Confirmação de titularidade via link local",
+      "expected": "Botão confirma o link e libera login",
+      "procedure": "Abrir verificationUrl da caixa local; clicar confirmar; autenticar pela API",
+      "status": "aprovado",
+      "preconditions": "Instâncias e banco de correção isolados; caixa de saída local autorizada.",
+      "obtained": "Confirmação e login autorizados após consumo do link.",
+      "durationMs": 1028.9060999999992,
+      "evidence": "evidencias/verificacao-email.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT169",
+      "area": "Confirmação institucional e sessões",
+      "title": "Link de uso único",
+      "expected": "Reutilização retorna 400",
+      "procedure": "Repetir o mesmo token já confirmado",
+      "status": "aprovado",
+      "preconditions": "Instâncias e banco de correção isolados; caixa de saída local autorizada.",
+      "obtained": "HTTP 400",
+      "durationMs": 11.867799999999988,
+      "evidence": "evidencias/verificacao-email.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT170",
+      "area": "Confirmação institucional e sessões",
+      "title": "Link inválido",
+      "expected": "Token aleatório retorna 400",
+      "procedure": "Enviar 64 caracteres aleatórios não cadastrados",
+      "status": "aprovado",
+      "preconditions": "Instâncias e banco de correção isolados; caixa de saída local autorizada.",
+      "obtained": "HTTP 400",
+      "durationMs": 12.463300000000345,
+      "evidence": "evidencias/verificacao-email.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT171",
+      "area": "Confirmação institucional e sessões",
+      "title": "Link expirado",
+      "expected": "Token expirado retorna 400 e conta segue pendente",
+      "procedure": "Cadastrar conta fictícia; SQL de preparação simula validade passada; chamar confirmação real",
+      "status": "aprovado",
+      "preconditions": "Instâncias e banco de correção isolados; caixa de saída local autorizada.",
+      "obtained": "HTTP 400; tempo expirado preparado por SQL, sem mock do endpoint.",
+      "durationMs": 491.15740000000005,
+      "evidence": "evidencias/verificacao-email.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT172",
+      "area": "Confirmação institucional e sessões",
+      "title": "Reenvio após expiração",
+      "expected": "Novo link confirma; anterior não funciona; API não expõe token",
+      "procedure": "Solicitar reenvio, ler caixa local e confirmar novo link",
+      "status": "aprovado",
+      "preconditions": "Instâncias e banco de correção isolados; caixa de saída local autorizada.",
+      "obtained": "Reenvio e uso único confirmados; links omitidos dos registros públicos.",
+      "durationMs": 67.6855999999998,
+      "evidence": "evidencias/verificacao-email.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT173",
+      "area": "Confirmação institucional e sessões",
+      "title": "Revogação de sessão e desconexão do socket",
+      "expected": "Logout revoga o JWT e encerra conexão Socket.IO; nova sessão funciona",
+      "procedure": "Autenticar, conectar socket, POST logout, aguardar disconnect, GET /me com JWT anterior",
+      "status": "aprovado",
+      "preconditions": "Instâncias e banco de correção isolados; caixa de saída local autorizada.",
+      "obtained": "JWT revogado retorna 401; socket encerrado; novo login retorna 200.",
+      "durationMs": 870.5608999999995,
+      "evidence": "evidencias/verificacao-email.json; evidencias/capturas/"
+    },
+    {
+      "id": "CT174",
+      "area": "Build de produção",
+      "title": "Execução do backend compilado e upload",
+      "preconditions": "Bundle compilado do código corrigido; banco e diretório de uploads isolados.",
+      "procedure": "Iniciar build/server.js em porta4533; login real de conta fictícia; upload PNG e leitura do arquivo estático.",
+      "expected": "Bundle executável; diretórios corretos; upload seguro; imagem acessível",
+      "durationMs": 3013.0059,
+      "evidence": "evidencias/build-smoke.json; evidencias/build-server-smoke.log",
+      "status": "aprovado",
+      "obtained": "Build iniciou, autenticou, gravou PNG no diretório isolado correto e serviu imagem HTTP 200 sem hash; nosniff presente."
+    }
+  ],
+  "comparison": [
+    {
+      "id": "CT004",
+      "scenario": "Dados inválidos no cadastro",
+      "before": "reprovado",
+      "after": "aprovado",
+      "obtained": "\"Asserções satisfeitas\"",
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json"
+    },
+    {
+      "id": "CT005",
+      "scenario": "Nome vazio no cadastro",
+      "before": "reprovado",
+      "after": "aprovado",
+      "obtained": "\"Asserções satisfeitas\"",
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json"
+    },
+    {
+      "id": "CT012",
+      "scenario": "Titularidade do e-mail institucional",
+      "before": "reprovado",
+      "after": "aprovado",
+      "obtained": "Login bloqueado até confirmar e-mail; demais contas confirmadas via caixa local para os testes",
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json"
+    },
+    {
+      "id": "CT024",
+      "scenario": "Preço negativo",
+      "before": "reprovado",
+      "after": "aprovado",
+      "obtained": "\"Asserções satisfeitas\"",
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json"
+    },
+    {
+      "id": "CT025",
+      "scenario": "Título e descrição vazios",
+      "before": "reprovado",
+      "after": "aprovado",
+      "obtained": "\"Asserções satisfeitas\"",
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json"
+    },
+    {
+      "id": "CT030",
+      "scenario": "Duplicação ativa",
+      "before": "reprovado",
+      "after": "aprovado",
+      "obtained": "\"Asserções satisfeitas\"",
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json"
+    },
+    {
+      "id": "CT034",
+      "scenario": "Avaliar antes da conclusão",
+      "before": "reprovado",
+      "after": "aprovado",
+      "obtained": "\"Asserções satisfeitas\"",
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json"
+    },
+    {
+      "id": "CT038",
+      "scenario": "Avaliação duplicada",
+      "before": "reprovado",
+      "after": "aprovado",
+      "obtained": "\"Asserções satisfeitas\"",
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json"
+    },
+    {
+      "id": "CT039",
+      "scenario": "Serviço não contratado",
+      "before": "reprovado",
+      "after": "aprovado",
+      "obtained": "\"Asserções satisfeitas\"",
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json"
+    },
+    {
+      "id": "CT040",
+      "scenario": "Estrelas fora do intervalo",
+      "before": "reprovado",
+      "after": "aprovado",
+      "obtained": "\"Asserções satisfeitas\"",
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json"
+    },
+    {
+      "id": "CT041",
+      "scenario": "Estrelas fracionárias",
+      "before": "reprovado",
+      "after": "aprovado",
+      "obtained": "\"Asserções satisfeitas\"",
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json"
+    },
+    {
+      "id": "CT042",
+      "scenario": "Contratar próprio serviço",
+      "before": "reprovado",
+      "after": "aprovado",
+      "obtained": "\"Asserções satisfeitas\"",
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json"
+    },
+    {
+      "id": "CT046",
+      "scenario": "Exclusão por terceiro (IDOR)",
+      "before": "reprovado",
+      "after": "aprovado",
+      "obtained": "\"Asserções satisfeitas\"",
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json"
+    },
+    {
+      "id": "CT050",
+      "scenario": "Mensagem em branco",
+      "before": "reprovado",
+      "after": "aprovado",
+      "obtained": "\"Asserções satisfeitas\"",
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json"
+    },
+    {
+      "id": "CT055",
+      "scenario": "Assumir identidade sem JWT",
+      "before": "reprovado",
+      "after": "aprovado",
+      "obtained": "Handshake rejeitado sem token",
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json"
+    },
+    {
+      "id": "CT056",
+      "scenario": "JWT inválido com userId válido",
+      "before": "reprovado",
+      "after": "aprovado",
+      "obtained": "\"Asserções satisfeitas\"",
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json"
+    },
+    {
+      "id": "CT061",
+      "scenario": "IDOR leitura de terceiro",
+      "before": "reprovado",
+      "after": "aprovado",
+      "obtained": "\"Asserções satisfeitas\"",
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json"
+    },
+    {
+      "id": "CT062",
+      "scenario": "Exclusão por terceiro",
+      "before": "reprovado",
+      "after": "aprovado",
+      "obtained": "\"Asserções satisfeitas\"",
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json"
+    },
+    {
+      "id": "CT074",
+      "scenario": "Restrições de domínio na camada SQL",
+      "before": "reprovado",
+      "after": "aprovado",
+      "obtained": "CHECK rejeitou",
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json"
+    },
+    {
+      "id": "CT075",
+      "scenario": "Hash exposto na resposta de upload",
+      "before": "reprovado",
+      "after": "aprovado",
+      "obtained": "\"Asserções satisfeitas\"",
+      "evidence": "evidencias/api-http.json; evidencias/api-resultados.json"
+    },
+    {
+      "id": "CT158",
+      "scenario": "TypeScript backend",
+      "before": "reprovado",
+      "after": "aprovado",
+      "obtained": "exit=0",
+      "evidence": "evidencias/adicionais.json; evidencias/*.log"
+    },
+    {
+      "id": "CT159",
+      "scenario": "Build backend",
+      "before": "reprovado",
+      "after": "aprovado",
+      "obtained": "exit=0",
+      "evidence": "evidencias/adicionais.json; evidencias/*.log"
+    },
+    {
+      "id": "CT160",
+      "scenario": "Upload SVG com conteúdo ativo",
+      "before": "reprovado",
+      "after": "aprovado",
+      "obtained": "{\"rejected\":true,\"status\":400}",
+      "evidence": "evidencias/adicionais.json; evidencias/*.log"
+    },
+    {
+      "id": "CT161",
+      "scenario": "JWT anterior ao logout",
+      "before": "reprovado",
+      "after": "aprovado",
+      "obtained": "Sessão encerrada: HTTP 401; outras sessões independentes permanecem válidas",
+      "evidence": "evidencias/adicionais.json; evidencias/*.log"
+    },
+    {
+      "id": "CT165",
+      "scenario": "Sessão C não pode entrar na sala de B",
+      "before": "reprovado",
+      "after": "aprovado",
+      "obtained": "JWT C não ingressa na sala B",
+      "evidence": "evidencias/socket-seguranca-eventos.json; evidencias/socket-seguranca.json"
+    },
+    {
+      "id": "CT166",
+      "scenario": "Listagem pública não expõe hashes",
+      "before": "reprovado",
+      "after": "aprovado",
+      "evidence": "evidencias/socket-seguranca-eventos.json; evidencias/socket-seguranca.json"
+    }
+  ]
+}

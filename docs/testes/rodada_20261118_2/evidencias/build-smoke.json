@@ -1,0 +1,12 @@
+{
+  "id": "CT174",
+  "area": "Build de produção",
+  "title": "Execução do backend compilado e upload",
+  "preconditions": "Bundle compilado do código corrigido; banco e diretório de uploads isolados.",
+  "procedure": "Iniciar build/server.js em porta4533; login real de conta fictícia; upload PNG e leitura do arquivo estático.",
+  "expected": "Bundle executável; diretórios corretos; upload seguro; imagem acessível",
+  "durationMs": 2073.9008,
+  "evidence": "evidencias/build-smoke.json; evidencias/build-server-smoke.log",
+  "status": "aprovado",
+  "obtained": "Build iniciou, autenticou, gravou PNG no diretório isolado correto e serviu imagem HTTP 200 sem hash; nosniff presente."
+}

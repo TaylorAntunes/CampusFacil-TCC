@@ -1,0 +1,14 @@
+{
+  "id": "CT079",
+  "area": "Interface/chat",
+  "requirement": "Envio e persistência de mensagens pela interface",
+  "title": "Envio pela interface",
+  "preconditions": "Sessão fictícia B; backend e banco isolados reais.",
+  "procedure": "Abrir conversa B→A; preencher textarea; Enter; localizar apenas bolha p.whitespace-pre-wrap; recarregar e conferir mensagem.",
+  "expected": "Mensagem enviada, campo limpo e conteúdo persistente após reload",
+  "obtained": "Mensagem visível na bolha após envio e após reload; textarea vazio.",
+  "status": "aprovado",
+  "durationMs": 1910.5335000000002,
+  "evidence": "evidencias/capturas/CT079-envio-chat-reteste.png",
+  "note": "Primeira tentativa usou seletor ambíguo (prévia da conversa e bolha); reteste executado com seletor específico, sem alterar aplicação."
+}

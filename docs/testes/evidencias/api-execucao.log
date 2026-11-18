@@ -1,0 +1,76 @@
+CT001 aprovado Cadastro institucional
+CT002 aprovado Cadastro externo
+CT003 aprovado Cadastro duplicado
+CT004 reprovado Dados inválidos no cadastro
+CT005 reprovado Nome vazio no cadastro
+CT006 aprovado Sufixos de domínio maliciosos
+CT007 aprovado Login correto
+CT008 aprovado Senha incorreta
+CT009 aprovado Rotas protegidas sem token
+CT010 aprovado JWT inválido e expirado
+CT011 aprovado Hash bcrypt
+CT012 reprovado Titularidade do e-mail institucional
+CT013 aprovado Visualização do próprio perfil
+CT014 aprovado Atualização pessoal
+CT015 aprovado Não alterar perfil alheio
+CT016 aprovado Upload de avatar PNG
+CT017 aprovado Upload rejeita texto
+CT018 aprovado Perfil público do prestador
+CT019 aprovado Criação válida
+CT020 aprovado Listagem e palavra-chave
+CT021 aprovado Filtro por categoria
+CT022 aprovado Edição própria
+CT023 aprovado Campos ausentes
+CT024 reprovado Preço negativo
+CT025 reprovado Título e descrição vazios
+CT026 aprovado Edição de terceiro
+CT027 aprovado Exclusão de terceiro
+CT028 aprovado Exclusão própria
+CT029 aprovado Criar solicitação
+CT030 reprovado Duplicação ativa
+CT031 aprovado Terceiro altera status
+CT032 aprovado Transição inválida
+CT033 aprovado Aceitar solicitação
+CT034 reprovado Avaliar antes da conclusão
+CT035 aprovado Iniciar serviço
+CT036 aprovado Concluir serviço
+CT037 aprovado Avaliação após conclusão
+CT038 reprovado Avaliação duplicada
+CT039 reprovado Serviço não contratado
+CT040 reprovado Estrelas fora do intervalo
+CT041 reprovado Estrelas fracionárias
+CT042 reprovado Contratar próprio serviço
+CT043 aprovado Recusar solicitação
+CT044 aprovado Cancelar solicitação
+CT045 aprovado Acompanhamento
+CT046 reprovado Exclusão por terceiro (IDOR)
+CT047 aprovado Mensagem persistida
+CT048 aprovado Mensagem para si mesmo
+CT049 aprovado Histórico de terceiros (HTTP)
+CT050 reprovado Mensagem em branco
+CT051 aprovado Remetente injetado
+CT052 aprovado Entrega em tempo real
+CT053 aprovado Isolamento entre salas legítimas
+CT054 aprovado Conexão sem identidade
+CT055 reprovado Assumir identidade sem JWT
+CT056 reprovado JWT inválido com userId válido
+CT057 aprovado Reconexão e histórico
+CT058 aprovado 100 entregas reais de mensagens
+CT059 aprovado Recebimento interno
+CT060 aprovado Marcar como lida
+CT061 reprovado IDOR leitura de terceiro
+CT062 reprovado Exclusão por terceiro
+CT063 aprovado Contagem e marcar todas
+CT064 aprovado Criação e evento
+CT065 aprovado Consistência dos indicadores
+CT066 aprovado SQL Injection em busca/login
+CT067 aprovado Ausência de hash em mensagens/perfil
+CT068 aprovado Mass assignment de role
+CT069 aprovado Unicidade do e-mail
+CT070 aprovado Integridade referencial
+CT071 aprovado Campo obrigatório nulo
+CT072 aprovado Persistência em conexão nova
+CT073 aprovado Unicidade de avaliação
+CT074 reprovado Restrições de domínio na camada SQL
+CT075 reprovado Hash exposto na resposta de upload
+API concluída 75

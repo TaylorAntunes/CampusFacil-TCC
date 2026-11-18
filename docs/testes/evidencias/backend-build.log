@@ -1,0 +1,6 @@
+
+> tcc-taylor@1.0.0 build
+> tsup src --out-dir build
+
+'tsup' não é reconhecido como um comando interno
+ou externo, um programa operável ou um arquivo em lotes.

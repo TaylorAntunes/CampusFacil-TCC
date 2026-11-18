@@ -1,0 +1,309 @@
+[
+  {
+    "method": "POST",
+    "route": "/service-requests",
+    "status": 201,
+    "data": ""
+  },
+  {
+    "method": "GET",
+    "route": "/advertisements/5f7064f6-8534-442c-845e-6942e318bac7/service-requests",
+    "status": 200,
+    "data": {
+      "serviceRequests": [
+        {
+          "id": "78dd977d-41cf-4633-84b9-3beafaab70a2",
+          "status": "COMPLETED",
+          "created_at": "2026-11-18T16:29:52.381Z",
+          "updated_at": "2026-11-18T16:29:52.495Z",
+          "advertisementId": "5f7064f6-8534-442c-845e-6942e318bac7",
+          "requesterId": "79992663-1d34-47da-b2bb-7e3660a086d8",
+          "message": "Solicitação fictícia para auditoria 76c882f6-ae70-4aaa-853e-941ef934e90f"
+        },
+        {
+          "id": "52b6cd23-a46a-4aaf-9b75-fa0c836c14e2",
+          "status": "PENDING",
+          "created_at": "2026-11-18T16:30:38.245Z",
+          "updated_at": "2026-11-18T16:30:38.245Z",
+          "advertisementId": "5f7064f6-8534-442c-845e-6942e318bac7",
+          "requesterId": "11818e3b-89dd-41eb-aebe-e823d57dad86",
+          "message": "[Regressão] Solicitação C para provar isolamento."
+        }
+      ]
+    }
+  },
+  {
+    "method": "GET",
+    "route": "/advertisements/5f7064f6-8534-442c-845e-6942e318bac7/service-requests",
+    "status": 200,
+    "data": {
+      "serviceRequests": [
+        {
+          "id": "78dd977d-41cf-4633-84b9-3beafaab70a2",
+          "status": "COMPLETED",
+          "created_at": "2026-11-18T16:29:52.381Z",
+          "updated_at": "2026-11-18T16:29:52.495Z",
+          "advertisementId": "5f7064f6-8534-442c-845e-6942e318bac7",
+          "requesterId": "79992663-1d34-47da-b2bb-7e3660a086d8",
+          "message": "Solicitação fictícia para auditoria 76c882f6-ae70-4aaa-853e-941ef934e90f"
+        }
+      ]
+    }
+  },
+  {
+    "method": "GET",
+    "route": "/advertisements/5f7064f6-8534-442c-845e-6942e318bac7/service-requests",
+    "status": 200,
+    "data": {
+      "serviceRequests": [
+        {
+          "id": "52b6cd23-a46a-4aaf-9b75-fa0c836c14e2",
+          "status": "PENDING",
+          "created_at": "2026-11-18T16:30:38.245Z",
+          "updated_at": "2026-11-18T16:30:38.245Z",
+          "advertisementId": "5f7064f6-8534-442c-845e-6942e318bac7",
+          "requesterId": "11818e3b-89dd-41eb-aebe-e823d57dad86",
+          "message": "[Regressão] Solicitação C para provar isolamento."
+        }
+      ]
+    }
+  },
+  {
+    "method": "GET",
+    "route": "/advertisements/5f7064f6-8534-442c-845e-6942e318bac7/service-requests?actorUserId=88a17522-f909-4f3d-8728-8b4c503a289d&userId=88a17522-f909-4f3d-8728-8b4c503a289d",
+    "status": 200,
+    "data": {
+      "serviceRequests": [
+        {
+          "id": "52b6cd23-a46a-4aaf-9b75-fa0c836c14e2",
+          "status": "PENDING",
+          "created_at": "2026-11-18T16:30:38.245Z",
+          "updated_at": "2026-11-18T16:30:38.245Z",
+          "advertisementId": "5f7064f6-8534-442c-845e-6942e318bac7",
+          "requesterId": "11818e3b-89dd-41eb-aebe-e823d57dad86",
+          "message": "[Regressão] Solicitação C para provar isolamento."
+        }
+      ]
+    }
+  },
+  {
+    "method": "GET",
+    "route": "/advertisements/5f7064f6-8534-442c-845e-6942e318bac7/service-requests",
+    "status": 401,
+    "data": {
+      "message": "Sessão inválida ou expirada. Entre novamente."
+    }
+  },
+  {
+    "method": "GET",
+    "route": "/advertisements/7c609286-baaf-400a-8b45-e3c559e02cd3/service-requests",
+    "status": 404,
+    "data": {
+      "message": "Resource not found."
+    }
+  },
+  {
+    "method": "POST",
+    "route": "/notifications",
+    "status": 403,
+    "data": {
+      "message": "As notificações são geradas automaticamente pelas ações autorizadas do sistema."
+    }
+  },
+  {
+    "method": "POST",
+    "route": "/notifications",
+    "status": 403,
+    "data": {
+      "message": "As notificações são geradas automaticamente pelas ações autorizadas do sistema."
+    }
+  },
+  {
+    "method": "POST",
+    "route": "/notifications",
+    "status": 403,
+    "data": {
+      "message": "As notificações são geradas automaticamente pelas ações autorizadas do sistema."
+    }
+  },
+  {
+    "method": "POST",
+    "route": "/notifications",
+    "status": 403,
+    "data": {
+      "message": "As notificações são geradas automaticamente pelas ações autorizadas do sistema."
+    }
+  },
+  {
+    "method": "PATCH",
+    "route": "/service-requests/52b6cd23-a46a-4aaf-9b75-fa0c836c14e2/status",
+    "status": 200,
+    "data": {
+      "serviceRequest": {
+        "id": "52b6cd23-a46a-4aaf-9b75-fa0c836c14e2",
+        "status": "ACCEPTED",
+        "created_at": "2026-11-18T16:30:38.245Z",
+        "updated_at": "2026-11-18T16:30:38.499Z",
+        "advertisementId": "5f7064f6-8534-442c-845e-6942e318bac7",
+        "requesterId": "11818e3b-89dd-41eb-aebe-e823d57dad86",
+        "message": "[Regressão] Solicitação C para provar isolamento.",
+        "advertisement": {
+          "id": "5f7064f6-8534-442c-845e-6942e318bac7",
+          "title": "Monitoria auditoria mwmc745k",
+          "description": "Descrição revisada de exemplo para auditoria.",
+          "price": "30",
+          "image": null,
+          "availability": "ACTIVE",
+          "created_at": "2026-11-18T16:29:52.221Z",
+          "authorId": "88a17522-f909-4f3d-8728-8b4c503a289d",
+          "categoryId": "a4a8f3f5-363d-4539-9e19-d79a755aa6d1",
+          "author": {
+            "id": "88a17522-f909-4f3d-8728-8b4c503a289d",
+            "name": "Prestador fictício atualizado",
+            "avatar_url": "/uploads/8f07d486-8751-40b6-a681-ef5329a76f76.png"
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "PUT",
+    "route": "/me",
+    "status": 400,
+    "data": {
+      "message": "Dados inválidos.",
+      "issues": {
+        "formErrors": [],
+        "fieldErrors": {
+          "name": [
+            "Too small: expected string to have >=3 characters"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "PUT",
+    "route": "/me",
+    "status": 400,
+    "data": {
+      "message": "Dados inválidos.",
+      "issues": {
+        "formErrors": [],
+        "fieldErrors": {
+          "name": [
+            "Too small: expected string to have >=3 characters"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "PUT",
+    "route": "/me",
+    "status": 400,
+    "data": {
+      "message": "Dados inválidos.",
+      "issues": {
+        "formErrors": [],
+        "fieldErrors": {
+          "name": [
+            "Too small: expected string to have >=3 characters"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "PUT",
+    "route": "/me",
+    "status": 400,
+    "data": {
+      "message": "Dados inválidos.",
+      "issues": {
+        "formErrors": [],
+        "fieldErrors": {
+          "name": [
+            "Too big: expected string to have <=120 characters"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "PUT",
+    "route": "/me",
+    "status": 400,
+    "data": {
+      "message": "Dados inválidos.",
+      "issues": {
+        "formErrors": [],
+        "fieldErrors": {
+          "name": [
+            "Invalid input: expected string, received number"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "PUT",
+    "route": "/me",
+    "status": 200,
+    "data": {
+      "id": "11818e3b-89dd-41eb-aebe-e823d57dad86",
+      "name": "Nome válido de regressão",
+      "email": "audit.mwmc745k.terceiro@ifce.edu.br",
+      "email_verified_at": "2026-11-18T16:29:50.427Z",
+      "course": null,
+      "semester": null,
+      "bio": null,
+      "avatar_url": null,
+      "location": null,
+      "response_time": null,
+      "skills": [],
+      "role": "MEMBER",
+      "created_at": "2026-11-18T16:29:50.415Z"
+    }
+  },
+  {
+    "method": "PUT",
+    "route": "/me",
+    "status": 200,
+    "data": {
+      "id": "11818e3b-89dd-41eb-aebe-e823d57dad86",
+      "name": "Auditoria terceiro",
+      "email": "audit.mwmc745k.terceiro@ifce.edu.br",
+      "email_verified_at": "2026-11-18T16:29:50.427Z",
+      "course": null,
+      "semester": null,
+      "bio": null,
+      "avatar_url": null,
+      "location": null,
+      "response_time": null,
+      "skills": [],
+      "role": "MEMBER",
+      "created_at": "2026-11-18T16:29:50.415Z"
+    }
+  },
+  {
+    "method": "PUT",
+    "route": "/me",
+    "status": 200,
+    "data": {
+      "id": "11818e3b-89dd-41eb-aebe-e823d57dad86",
+      "name": "Auditoria terceiro",
+      "email": "audit.mwmc745k.terceiro@ifce.edu.br",
+      "email_verified_at": "2026-11-18T16:29:50.427Z",
+      "course": "Curso fictício de regressão",
+      "semester": null,
+      "bio": null,
+      "avatar_url": null,
+      "location": null,
+      "response_time": null,
+      "skills": [],
+      "role": "MEMBER",
+      "created_at": "2026-11-18T16:29:50.415Z"
+    }
+  }
+]

@@ -1,0 +1,10 @@
+CT175 reprovado Leitura de solicitações de terceiros por anúncio
+CT176 reprovado Criação de aviso de sistema para terceiro
+CT177 aprovado Alterar disponibilidade de anúncio alheio
+CT178 aprovado Leitura de mensagens não modifica conversa alheia
+CT179 aprovado Segredos de confirmação ausentes na lista pública
+CT180 aprovado SVG disfarçado de PNG
+CT181 reprovado Nome vazio na atualização do perfil
+CT182 aprovado Preço negativo rejeitado também no banco
+CT183 aprovado Cancelar solicitação já aceita
+CT184 aprovado Estado terminal não pode ser reaberto

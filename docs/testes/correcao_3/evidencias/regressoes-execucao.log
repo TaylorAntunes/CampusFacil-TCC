@@ -1,0 +1,11 @@
+CT185 aprovado Prestador consulta todos os solicitantes
+CT186 aprovado Solicitante B vê somente seu histórico
+CT187 aprovado Solicitante C vê somente seu histórico
+CT188 aprovado Identidade injetada na consulta é ignorada
+CT189 aprovado Consulta de solicitações exige autenticação
+CT190 aprovado Anúncio inexistente não produz lista enganosa
+CT191 aprovado Criação pública de notificação não grava dados
+CT192 aprovado Aceite legítimo continua emitindo notificação
+CT193 aprovado Nomes vazios, curtos e longos são rejeitados
+CT194 aprovado Nome válido é aparado e persistido
+CT195 aprovado Omitir nome permite editar outros campos

@@ -1,0 +1,38 @@
+[
+  {
+    "file": "backend/src/services/fetch-advertisement-service-requests.ts",
+    "sha256": "4f364b3941577dd70d44494d0785878ae290700ace0ba8ddeb575e95967cd0f5"
+  },
+  {
+    "file": "backend/src/services/factories/make-fetch-advertisement-service-requests-service.ts",
+    "sha256": "22a135bc0affbe9ccf73c751ba2c88e31b2d2406b55d2c06b9867ed9926792db"
+  },
+  {
+    "file": "backend/src/http/controllers/advertisements/fetch-advertisement-service-requests-controller.ts",
+    "sha256": "d7ebbb0f3ccf0eac255ad4c573e91145dcc7b5c41593415eaef7903416f4adc5"
+  },
+  {
+    "file": "backend/src/http/controllers/service-requests/fetch-by-advertisement.ts",
+    "sha256": "9a6583a4b441c9085ffef625e7385c90b4c2aa1b2682271ebf3156daa4e77186"
+  },
+  {
+    "file": "backend/src/http/controllers/notifications/create.ts",
+    "sha256": "d65889de878355094fbbe341330dfbb2ac82a090672eb76b835d0fed31c786f3"
+  },
+  {
+    "file": "backend/src/utils/user-name-schema.ts",
+    "sha256": "6d25ac9e3cd9757125badfd1303b039c415f2db491d574614c4b48baac36b4b4"
+  },
+  {
+    "file": "backend/src/http/controllers/users/update-user-profile-controller.ts",
+    "sha256": "7f9b7bdaf8e533ad2550a4b50b804ce088e7b07f64f9799eb2c629d4c9323ab6"
+  },
+  {
+    "file": "backend/src/http/controllers/users/register.ts",
+    "sha256": "81d86b32b0c6bb29178a8fb5d57393eee91d49bbeb8605ba3d91e070bfcccbe7"
+  },
+  {
+    "file": "backend/src/services/update-user-profile.ts",
+    "sha256": "0a6a24399ba2895509e668281bc7d051faaa0ed6a27d6f6821041471d5fad18f"
+  }
+]

@@ -1,0 +1,11 @@
+const path=require('path');
+const root=path.resolve(__dirname,'..');
+const config=require(root+'/runtime/config.private.json');
+if(!/^campusfacil_audit_\d+$/.test(config.databaseName))throw Error('Somente banco de teste');
+Object.assign(process.env,config);
+const project=path.resolve(root,'../../..');
+process.env.NODE_PATH=project+'/backend/node_modules';require('module').Module._initPaths();
+process.chdir(root+'/runtime/backend');
+require('ts-node').register({transpileOnly:true,project:root+'/runtime/backend/tsconfig.json'});
+require('tsconfig-paths').register({baseUrl:root+'/runtime/backend',paths:{'@/*':['src/*']}});
+require(root+'/runtime/backend/src/server.ts');

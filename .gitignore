@@ -1,0 +1,31 @@
+# Dependencies and build output
+**/node_modules/
+**/dist/
+**/build/
+**/coverage/
+*.tsbuildinfo
+
+# Local credentials and verification mail
+**/.env
+**/.env.*
+!**/.env.example
+**/.local-mail/
+**/*.private.json
+*.pem
+*.key
+
+# Local uploads; keep only the directory
+**/uploads/*
+!**/uploads/.gitkeep
+
+# Isolated test applications, browsers, and pre-fix backups
+**/runtime/
+**/antes/
+*.zip
+
+# Editors and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+npm-debug.log*

@@ -1,0 +1,15 @@
+{
+  "time": "2026-11-18T16:38:00.097Z",
+  "filesCompared": 283,
+  "changed": [],
+  "unchanged": true,
+  "excluded": [
+    "node_modules",
+    "dist",
+    "build",
+    "uploads",
+    ".git",
+    ".local-mail",
+    ".env*"
+  ]
+}

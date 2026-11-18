@@ -1,0 +1,7 @@
+CT167 aprovado Cadastro real no navegador exige confirmação
+CT168 aprovado Confirmação de titularidade via link local
+CT169 aprovado Link de uso único
+CT170 aprovado Link inválido
+CT171 aprovado Link expirado
+CT172 aprovado Reenvio após expiração
+CT173 aprovado Revogação de sessão e desconexão do socket
